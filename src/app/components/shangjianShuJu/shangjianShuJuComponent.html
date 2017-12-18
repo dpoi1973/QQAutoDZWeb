@@ -1,0 +1,35 @@
+<div class="component">
+  <div>
+  <div class="public-button" style="height:33px">
+     <div style="float:right">
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.search()" value="单证查询">
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.Delete()" value="新建单证">
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.Daoru()" value="打开单证">
+      <input type="submit" class="btn btn-default btn-sm" disabled="disabled" ng-click="$ctrl.search()" value="复制单证">
+      <input type="submit" class="btn btn-default btn-sm" disabled="disabled" ng-click="$ctrl.Delete()" value="删除单证">
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.Send()" value="发送单证1111">
+      <button type="button" class="btn btn-default btn-sm" ng-click="isCollapsed = !isCollapsed" style="background-color:#48D1CC;color:#fff">open</button>
+      </div>
+     <div style="float:right;">
+			<input type="text" class="form-control input-search" my-enter="$ctrl.search()" ng-model="$ctrl.searchCondition.condition.HScode" placeholder="hscode"
+				aria-describedby="basic-addon2">
+		</div>
+    </div>
+    <hr>
+       <div uib-collapse="!isCollapsed" class="public-showhide">
+          <div >
+            <lable>业务编号</lable> <input  type="text"> <lable>经营单位</lable> <input  type="text"> <lable>提运单号</lable> <input type="text"> 
+          </div>
+           <div >
+            <lable>创建日期</lable> <input  type="text"> <lable>
+到</lable> <input type="text"> <lable>客户端名称</lable> <input type="text"> 
+          </div>
+           <div >
+            <lable>创建人</lable> <input   type="text">  <lable>商检状态</lable> <input type="text"> 
+          </div>
+        
+      </div>
+   
+    <div ui-grid="$ctrl.gridOptions" ui-grid-pagination ui-grid-selection  ui-grid-exporter id="grid1" class="grid" style="height:500px"></div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title">输入窗口</h3>
+</div>
+<table id='Hsmodel'>
+    <tr ng-repeat="item in $ctrl.hsmodel">
+        <td>{{item.title}}</td>
+        <td><div ng-bind-html="item.content"></div></td>
+    </tr>
+</table>
+
+
+<div class="modal-footer">
+    <!--<input type="text" class="form-control" id="pass" name="name" ng-model=hode />-->
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

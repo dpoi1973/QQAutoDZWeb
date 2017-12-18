@@ -1,0 +1,147 @@
+<div class="component spguilei">
+  <div>
+    <p><input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="保存商品信息" ng-click="$ctrl.savedetail()">
+      <input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="复制商品信息" ng-click="$ctrl.saveas()">
+      <input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="审核通过" ng-click="$ctrl.pass()">
+      <input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="审核不通过" ng-click="$ctrl.reject()">
+      <input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="填写gmodel" ng-click="$ctrl.fillcspec($ctrl.detailInfoData.id)">
+      <input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="复制归类信息" ng-click="$ctrl.copyHsconfig($ctrl.detailInfoData.id)">
+      <input type="submit" class="btn" style="background-color:#48D1CC;color:#fff" value="关联商品信息" ng-click="$ctrl.linkpro($ctrl.detailInfoData.id)"></p>
+    <br>
+    <div>
+    <!--第一行-->
+      <div class="row" style="margin-top: 10px">
+       <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">客户名称</label></div>
+        <div class="col-sm-3">
+        <ui-select ng-model="$ctrl.detailInfoData.custid" theme="select2" ng-disabled="false"  on-select="$ctrl.beCustidSelected($item, $model)" style="width:100% !important">
+          <ui-select-match placeholder="请选择...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+          <ui-select-choices refresh="$ctrl.searchAsynccustname($select.search) " refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index ">
+            <div ng-bind-html="item.custname | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        </div>
+       <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">HSCode</label></div>
+        <div class="col-sm-3">
+          <ui-select ng-model="$ctrl.detailInfoData.HScode" theme="select2" ng-disabled="false" style="width:100%" on-select="$ctrl.beHscodeSelected($item)">
+            <ui-select-match placeholder="请选择...">{{$select.selected.HSCode || $select.selected}}</ui-select-match>
+            <ui-select-choices refresh="$ctrl.searchAsyncHScode($select.search) " refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource track by $index ">
+              <div ng-bind-html="item.HSCode | highlight: $select.search"></div>
+              <small ng-bind-html="item.GName | highlight: $select.search"></small>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+ 
+      </div>
+    <!--第二行-->
+      <div class="row" style="margin-top: 10px">
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">中心词</label></div>
+        <div class="col-sm-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.Cgoodsname"></div>
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">品名模板</label></div>
+        <div class="col-sm-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.pracGoodsname"></div>
+      </div>
+    <!--第三行-->
+      <div class="row" style="margin-top: 3px">
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">申报要素模板</label></div>
+         <div class="col-sm-3">
+          <div class="input-group" style="width:100%">
+              <input type="text" class="form-control" ng-model="$ctrl.detailInfoData.Cspec">
+              <span class="input-group-btn">
+                <input type="button" value="申报" class="btn btn-default btn-sm" ng-click="$ctrl.apply($ctrl.detailInfoData.HScode)">
+                <input type="button" value="输入" class="btn btn-default btn-sm" ng-click="$ctrl.log($ctrl.detailInfoData.HScode)">
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">规范申报模板(可读)</label></div>
+        <div class="col-sm-3">
+            <div class="input-group" style="width:100%">
+                <input type="text" class="form-control" ng-model="$ctrl.detailInfoData.fakeCspec">
+                <span class="input-group-btn">
+                    <input type="button" value="归类" class="btn btn-default btn-sm" ng-click="$ctrl.guilei($ctrl.detailInfoData.HScode)">
+                </span>
+            </div>
+      </div>
+    </div>
+
+      <div class="row" style="margin-top: 8px">
+         <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">规范申报结构</label></div>
+         <div class="col-sm-3"><textarea style="width: 100%; max-width:350px" ng-model="$ctrl.detailInfoData.R2Distinct"></textarea></div>
+<!--
+          <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">品名模板(可读)</label></div>
+         <div class="col-sm-3"><input style="width: 100%; max-width:350px" ng-model="$ctrl.detailInfoData.fakegoodsname"></input></div>-->
+
+          <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">品名模板(可读)</label></div>
+            <div class="col-sm-3">
+                <div class="input-group" style="width:100%">
+                    <input type="text" class="form-control" ng-model="$ctrl.detailInfoData.fakegoodsname">
+                    <span class="input-group-btn">
+                        <input type="button" value="修改" class="btn btn-default btn-sm" ng-click="$ctrl.revisefakegoodsname($ctrl.detailInfoData.HScode)">
+                    </span>
+                </div>
+          </div>
+      </div>
+    <!--第六行-->
+      <div class="row" style="margin-top: 3px">
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">proinfoconfig</label></div>
+        <div class="col-sm-3">
+          <input  style="width:80%;float:left; height:29px" ng-model="$ctrl.detailInfoData.proinfoconfig">
+          </input>
+        <input type="button" value="显示" style="height:29px;width: 20%;float:left" class="btn btn-default btn-sm" data-target="#myModaltwo" ng-click="$ctrl.showtemplatejson()">
+        </div>
+                 <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">申报单位</label></div>
+        <!--<div class="col-sm-3"><input id="unitid" ng-keyup="$ctrl.changeunitbalue()" type="text" style="width: 100%"  ng-model="$ctrl.detailInfoData.cunit"></div>-->
+            <div class="col-sm-3">
+              <ui-select ng-model="$ctrl.detailInfoData.cunit"  theme="select2" ng-disabled="false"  on-select="$ctrl.becunitSelected($item, $model)" style="width:100% !important">
+                <ui-select-match placeholder="请选择...">[{{$select.selected.Q_code || $select.selected}}]{{$ctrl.test}}{{$select.selected.Q_name}}</ui-select-match>
+                <ui-select-choices refresh="$ctrl.searchAsynccustunit($select.search) | filter: $select.search " refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource2 track by $index ">
+                  <div style="float:left; margin-right:20px" ng-bind-html="item.Q_code | highlight: $select.search"></div>
+                  <small ng-bind-html="item.Q_name | highlight: $select.search"></small>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+
+      </div>
+    <!--第七行-->
+      <div class="row" style="margin-top: 3px">
+                <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">midDic</label></div>
+        <div class="col-sm-3">
+          <input type="text" style="width:80%;float:left; height:29px" ng-model="$ctrl.detailInfoData.midDic"></input>
+          <input type="button" value="显示" style="height:29px;width: 20%;float:left" class="btn btn-default btn-sm" data-target="#myModalthree" ng-click="$ctrl.showmidDic()">
+        </div>
+                  <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">法定单位</label></div>
+        <div class="col-sm-3"><input type="text" style="width: 100%" disabled="disabled" ng-model="$ctrl.detailInfoData.cunit1"></div>
+      </div>
+      <!--第八行-->
+      <div class="row" style="margin-top: 3px">
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">状态</label></div>
+        <div class="col-sm-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.Status"></div>
+        <div class="col-sm-2" style="text-align: right; margin-top: 3px；"><label>第二单位</label> </div>
+        <div class="col-sm-3"><input disabled="disabled" type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.cunit2"></div>
+      </div>
+    </div>
+  </div>
+
+
+<!--显示proinfoconfig-->
+<div class="modal fade" id="myModaltwo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" ng-click="$ctrl.closetemp()" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							详细信息
+						</h4>
+					</div>
+					<div class="modal-body" id="modalbodytemp">
+						<ul>
+							<li ng-repeat="(key,value) in $ctrl.proinfoconfigObj">
+                <span>{{key}}:</span>
+								{{value}}
+			        </li>
+		      </ul>
+</div>
+					<div class="modal-footer">
+						<button type="button" ng-click="$ctrl.closetemp()" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+					</div>

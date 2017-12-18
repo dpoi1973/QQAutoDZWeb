@@ -1,0 +1,64 @@
+<div class="component" style="width:1200px; margin:0 auto;">
+  <div>
+  <div>
+    <table class="table table-bordered">
+      <caption><button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.printer()">打印</button></caption>
+      <tbody>
+      <tr>
+        <th>客户业务编号</th>
+        <td>{{$ctrl.detailInfoData.custYWNO}}</td>
+        <th>QuanqiuShenqingInfoList</th>
+        <td>{{$ctrl.detailInfoData.filename_1}}</td>
+      </tr>
+      <tr>
+        <th>QuanqiuInvoiceInfoList</th>
+        <td>{{$ctrl.detailInfoData.filename_2}}</td>
+        <th>QuanqiuPLInfoList</th>
+        <td>{{$ctrl.detailInfoData.filename_3}}</td>
+      </tr>
+      </tbody>
+    </table>
+      <table class="table table-bordered">
+      <caption style="color:black; font-size:25px;">Invoice</caption>
+      <tbody>
+      <tr>
+        <th>StockNO</th>
+        <td>{{$ctrl.detailInfoData.Invoice.StockNO}}</td>
+        <th>BaoguanApplyNO</th>
+        <td>{{$ctrl.detailInfoData.Invoice.BaoguanApplyNO}}</td>
+        <th>InvoiceNO</th>
+        <td>{{$ctrl.detailInfoData.Invoice.InvoiceNO}}</td>
+        <th>BaoguanDate</th>
+        <td>{{$ctrl.detailInfoData.Invoice.BaoguanDate}}</td>
+      </tr>
+      <tr>
+        <th>Tihuoplace</th>
+        <td>{{$ctrl.detailInfoData.Invoice.Tihuoplace}}</td>
+        <th>storecompany</th>
+        <td>{{$ctrl.detailInfoData.Invoice.storecompany}}</td>
+        <th>ownercode</th>
+        <td>{{$ctrl.detailInfoData.Invoice.ownercode}}</td>
+        <th>note</th>
+        <td>{{$ctrl.detailInfoData.Invoice.note}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+  <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.printerpacking()">打印(PACKING LIST)</button>
+  <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.printerschnker()">打印(SCHNKER)</button>
+  <div>
+    <uib-tabset active="activeJustified" justified="true">
+      <uib-tab index="1" heading="QuanqiuInvoiceInfo">
+        <div id="grid" ui-grid="$ctrl.gridOptions1"  class="grid" ui-grid-resize-columns ui-grid-auto-resize ui-grid-exporter  style="width:100%"></div>
+      </uib-tab>
+      <uib-tab index="2" heading="QuanqiuPLInfo">
+        <div id="grid1" ui-grid="$ctrl.gridOptions2"  class="grid2" ui-grid-resize-columns  ui-grid-cellnav ui-grid-auto-resize style="width:1200px"></div>
+      </uib-tab>
+      <uib-tab index="3" heading="QuanqiuShenqingInfo">
+        <div id="grid2" ui-grid="$ctrl.gridOptions3"  class="grid3" ui-grid-cellnav ui-grid-resize-columns ui-grid-auto-resize style="width:1200px"></div>
+      </uib-tab>
+    </uib-tabset>
+  </div>
+</div>
+</div>

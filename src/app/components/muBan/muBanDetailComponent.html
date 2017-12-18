@@ -1,0 +1,131 @@
+<div class="component">
+    <div>
+        <div>
+            <table class="table table-bordered">
+                <caption>
+                </caption>
+                <!--<tbody>
+                    <div style="float:right; ">
+                        <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.search()">查询</button>
+                        <input type="submit" class="btn btn-default btn-sm" value="保存" ng-click=$ctrl.savedetail()>
+                        <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.delete()" value="删除">
+                        <input type="button" class="btn btn-default btn-sm" ng-click="$ctrl.saveas()" value="另存为">
+                    </div>
+                    <div style="float:right">
+                        <input style="width:300px" class="form-control input-search" ng-model="$ctrl.fieldName" class="span2" aria-describedby="basic-addon2" type="text">
+                    </div>
+                    <tr>
+                        <th>创建时间</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.CreateDate" style="width:100%"></td>
+                        <th>创建人</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.CreatePersonName" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>修改时间</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.LastUpdateDate" style="width:100%"></td>
+                        <th>修改人</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.LastUpdatePersonName"  style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>goodsCustid</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.goodsCustid" style="width:100%"></td>
+                        <th>CustID</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.CustID" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>模板名称</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.TempleteName" style="width:100%"></td>
+                        <th>复模板</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.parentTempleteName" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>归类选项</th>
+                        <td><input type="text" value="{{$ctrl.detailInfoData.GuiLeiOptions}}" style="width:100%"></td>
+                        <th>OrderOptions</th>
+                        <td><input type="text" value="{{$ctrl.detailInfoData.OrderOptions}}" style="width:100%"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>-->
+         <tbody>
+                    <div style="float:right; ">
+                        <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.search()">查询</button>
+                        <input type="submit" class="btn btn-default btn-sm" value="保存" ng-click=$ctrl.savedetail()>
+                        <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.delete()" value="删除">
+                        <input type="button" class="btn btn-default btn-sm" ng-click="$ctrl.saveas()" value="另存为">
+                    </div>
+                    <div style="float:right">
+                        <input style="width:300px" class="form-control input-search" ng-model="$ctrl.fieldName" class="span2" aria-describedby="basic-addon2" type="text">
+                    </div>
+                    <tr>
+                        <th>进口口岸</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.i_e_port.Regex" style="width:100%"></td>
+                        <th>申报口岸</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.DECL_PORT.Regex" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>运输方式</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.traf_mode.Regex" style="width:100%"></td>
+                        <th>贸易国别</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.TRADE_AREA_CODE.Regex"  style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>启运国地</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.trade_country.Regex" style="width:100%"></td>
+                        <th>装货港</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.distinate_port.Regex" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>境内目的地</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.district_code.Regex" style="width:100%"></td>
+                        <th>成交方式</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.trans_mode.Regex" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>运费/率</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.fee_mark.Regex"  style="width:100%"></td>
+                        <th>包装种类</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.wrap_type.Regex" style="width:100%"></td>
+                    </tr>
+                        <tr>
+                        <th>保费/率</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.insur_mark.Regex" style="width:100%"></td>
+                        <th> 杂费/率</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.templateObj.other_mark.Regex" style="width:100%"></td>
+                    </tr>
+                    <!--<tr>
+                        <th>归类选项</th>
+                        <td><input type="text" value="{{$ctrl.detailInfoData.GuiLeiOptions}}" style="width:100%"></td>
+                        <th>OrderOptions</th>
+                        <td><input type="text" value="{{$ctrl.detailInfoData.OrderOptions}}" style="width:100%"></td>
+                    </tr>
+                                        </tr>
+                            <tr>
+                        <th>模板名称</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.TempleteName" style="width:100%"></td>
+                        <th>复模板</th>
+                        <td><input type="text" ng-model="$ctrl.detailInfoData.parentTempleteName" style="width:100%"></td>
+                    </tr>
+                    <tr>
+                        <th>归类选项</th>
+                        <td><input type="text" value="{{$ctrl.detailInfoData.GuiLeiOptions}}" style="width:100%"></td>
+                        <th>OrderOptions</th>
+                        <td><input type="text" value="{{$ctrl.detailInfoData.OrderOptions}}" style="width:100%"></td>
+                    </tr>-->
+                </tbody>
+            </table>
+
+</div>
+        <br>
+
+        <!--<div>
+            <div id="grid" ui-grid-edit ui-grid-selection ui-grid-cellnav ui-grid-resize-columns ui-grid-auto-resize ui-grid="$ctrl.gridOptions" class="grid" ui-grid-auto-resize></div>
+            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click=$ctrl.Add()>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+       </button>
+            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click=$ctrl.Delete()>
+            <span class="glyphicon glyphicon-minus" aria-hidden="true" ></span>
+       </button>
+        </div>-->
+
+    </div>

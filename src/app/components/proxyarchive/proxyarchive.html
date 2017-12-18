@@ -1,0 +1,74 @@
+<div class="component">
+	<!--写入代码-->
+	<div>
+		<div class="public-button">
+			<div style="float:right">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)">查询</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.delete()">删除</button>
+            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.upload()">上传</button>
+		   </div>
+		    <div style="float: right;" >
+			<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder="查询"
+				aria-describedby="basic-addon2">
+                <!--$ctrl.searchCondition.condition.description-->
+		</div>
+		</div>
+
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                提示信息
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul id="uploadbodyul" style="padding:0">
+                                <li>
+                                    <span>填入名称:</span> <input type="text" ng-model="$ctrl.uploadtit" style="display:inline-block; margin-left:8px; width:248px">
+                                </li>
+                                <li style="margin:5px 0">
+                                    <span>文件上传:</span> <input type="file" id="uploadfile" name="myfile2" style="display:inline-block; margin-left:8px">
+                                </li>
+                            </ul>
+                            <div class="spinner" id="spinner" style="display:none">
+                                <div class="spinner-container container1">
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                    <div class="circle3"></div>
+                                    <div class="circle4"></div>
+                                </div>
+                                <div class="spinner-container container2">
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                    <div class="circle3"></div>
+                                    <div class="circle4"></div>
+                                </div>
+                                <div class="spinner-container container3">
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                    <div class="circle3"></div>
+                                    <div class="circle4"></div>
+                                </div>
+                            </div>
+                            <div id="message">
+
+						    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-click="$ctrl.confirmupload()" id="confirmuploadbtn">确定
+                            </button>
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+		<br>
+		<br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-resize-columns ui-grid-pinning ui-grid-edit ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>

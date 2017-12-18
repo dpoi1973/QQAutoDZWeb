@@ -1,0 +1,148 @@
+<div class="component">
+	<!--写入代码-->
+	<div>
+		<div class="public-button">
+			<div style="float:right">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)">查询</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.delete()">删除</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.addnew()">添加</button>
+			<!--<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.findfile(modelkey)">文件名查询</button>-->
+		   </div>
+		    <div style="float: right;" >
+			<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder="查询"
+				aria-describedby="basic-addon2">
+                <!--$ctrl.searchCondition.condition.description-->
+		   </div>
+		   	<div style="float: left;" >
+			<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findfile(modelkeyfile)" ng-model="modelkeyfile" placeholder="文件名查询"
+				aria-describedby="basic-addon2">
+                <!--$ctrl.searchCondition.condition.description-->
+		   </div>
+		</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示信息
+				</h4>
+			</div>
+			<div class="modal-body">
+				<ul id="uploadbodyul" style="padding:0">
+					<li style="padding-left:35px">
+						<span>填入名称:</span> <input type="text" ng-model="$ctrl.uploadtit" style="display:inline-block; margin-left:8px; width:248px">
+					</li>
+					<li style="margin:5px 0;padding-left:35px">
+						<span>文件上传:</span> <input type="file" id="uploadfile" name="myfile2" style="display:inline-block; margin-left:8px">
+					</li>
+					<li style="padding-left:35px">
+						<span>选择类型:</span> 
+						<select name="" id="" style="width:248px; margin-left:8px" ng-change="$ctrl.classfiedtype()" ng-model="$ctrl.uploadfiletype">
+							<option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+								<option ng-repeat="x in $ctrl.filtypelist">{{x}}</option>
+						</select>
+					</li>
+						<li id="strrtli">
+                        <div  style="display:inline-block; padding:0;">
+                            <span>开始时间: </span>
+                        <p class="input-group" style="color:black;display:inline-flex; width:218px">
+                            <input id="strattime" type="text" class="form-control" uib-datepicker-popup ng-model="$ctrl.dt" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions"
+                            ng-required="true" close-text="关闭" readonly style="height:30px;" placeholder="起始时间" current-text="今天" clear-text="清除" close-text="关闭"/>
+                            <span class="input-group-btn" style="height:30px;">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.open()" style="padding:4px 10px;"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                        </div>
+					</li>
+                    <li id="endli">
+                        <div  style="display:inline-block; padding:0;">
+                            <span>结束时间: </span>
+                        <p class="input-group" style="color:black; display:inline-flex; width:218px">
+                            <input id="endtime" type="text" class="form-control" uib-datepicker-popup ng-model="$ctrl.enddt" is-open="$ctrl.endpopup2.opened" datepicker-options="$ctrl.dateOptions"
+                            ng-required="true" close-text="关闭" readonly style="height:30px;" placeholder="截止时间" current-text="今天" clear-text="清除" close-text="关闭"/>
+                            <span class="input-group-btn" style="height:30px;">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.endopen()" style="padding:4px 10px;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </p>
+                        </div>
+                    </li>
+				</ul>
+				<ul id="addonelist" style="padding:0">
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right; margin-right:5px">结算企业名称:</span>
+						<input type="text" ng-model="$ctrl.settlement_name">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right; margin-right:5px">经营单位企业名称:</span>
+						<input type="text" ng-model="$ctrl.business_name">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right; margin-right:5px">合同企业名称:</span>
+						<input type="text" ng-model="$ctrl.contract_name">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right; margin-right:5px">客户代为保管账号:</span>
+						<input type="text" ng-model="$ctrl.account">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right; margin-right:5px">客户代为管理密码:</span>
+						<input type="text" ng-model="$ctrl.password">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right; margin-right:5px">结算模式:</span>
+						<input type="text" ng-model="$ctrl.settlement_mode">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right;">待结算金额:</span>
+						<input type="text" ng-model="$ctrl.unsettlement_money">
+					</li>
+					<li>
+						<span style="width:128px;display:inline-block;text-align: right;">未退回金额:</span>
+						<input type="text" ng-model="$ctrl.unback_money">
+					</li>
+				</ul>
+				<div class="spinner" id="spinner" style="display:none">
+					<div class="spinner-container container1">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					<div class="spinner-container container2">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					<div class="spinner-container container3">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+				</div>
+				<div>
+					{{$ctrl.text}}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.confirmupload()" id="confirmuploadbtn">确定
+				</button>
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.addnewOkbtn()" id="addnewOkbtn">确定
+				</button>
+				<!--<button type="button" class="btn btn-primary" ng-click="$ctrl.modifyonelist()" id="modifyonelist">修改
+				</button>-->
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+		<br>
+		<br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-resize-columns ui-grid-pinning ui-grid-edit ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>

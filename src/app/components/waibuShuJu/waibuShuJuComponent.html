@@ -1,0 +1,147 @@
+
+
+<div class="component">
+	<!--写入代码-->
+	<div>
+	<div class="public-button">
+		<div style="float:right">
+			<button type="button" class="btn btn-default btn-sm"  ng-click="$ctrl.findAll(modelkey)">查询</button>
+			<button type="button" class="btn btn-default btn-sm " ng-click="$ctrl.detail()">查看详细</button>
+			<button type="button" class="btn btn-default btn-sm " ng-click="$ctrl.delete()">删除</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.printer()">打印</button>
+			<button type="button" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.jiedan()">接单</button>
+			<button type='button' class="btn btn-default btn-sm" ng-click="$ctrl.openupload()">上传内容</button>
+			<button type='button' class="btn btn-default btn-sm" ng-click="$ctrl.openuploadzip()">上传压缩包</button>
+			<div id="overlay">
+				<div id="dlgcontent">
+					<table id="tokenoperate">
+						<tr>
+							<td>
+								客户业务编号：
+							</td>
+							<td><input id="CustYwno" type="text"></td>
+						</tr>
+						<tr>
+							<td>
+								SOLD_TO
+							</td>
+							<td><input id="SOLD_TO" type="text"></td>
+						</tr>
+												<tr>
+							<td>
+								计费重量
+							</td>
+							<td><input id="feeweight" type="text"></td>
+						</tr>
+												<tr>
+						<td>
+								客户名称：
+						</td>
+							<td>
+									<ui-select ng-model="$ctrl.selectcompany" theme="select2" ng-disabled="false" style="width:200px">
+											<ui-select-match  placeholder="请输入客户名称...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+											<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index " style="width:256px">
+											<div ng-bind-html="item.custname | highlight: $select.search"></div>
+											<!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+											</ui-select-choices>
+									</ui-select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								申请单：
+							</td>
+							<td><input type="file" id="myfile" name="myfile"></td>
+						</tr>
+						<tr>
+							<td>装箱单(PL):</td>
+							<td><input type="file" id="myfile1" name="myfile1"></td>
+						</tr>
+						<tr>
+							<td>发票（INV）:</td>
+							<td><input type="file" id="myfile2" name="myfile2"></td>
+						</tr>
+					</table>
+					<div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.upload()" value='确定' /><input type='button' ng-click="$ctrl.cancle()" value='取消'
+						/></div>
+				</div>
+			</div>
+			<div id="overlayzip">
+				<ul id="tokenoperatezip">
+					<li>
+						<input type="file" file-model="myFile" id="myFilezip">
+					</li>
+					<li style="text-align: left;margin-left: 14px; margin-top: 10px;">
+						批次号：<input id="batch" type="text" style="width:183px">
+					</li>
+					<div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" ng-click="$ctrl.save()" data-target="#myModal" value='确定' /><input type='button' ng-click="$ctrl.canclezip()" value='取消'/></div>
+				</ul>
+			</div>
+		</div>
+		<div style="float:right; " >
+			<input type="text" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)"  ng-model="modelkey" placeholder="客户业务编号"
+				aria-describedby="basic-addon2">
+		</div>
+</div>
+
+<!--弹出层-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示信息
+				</h4>
+			</div>
+			<div class="modal-body" id="modalbody">
+				<div id="modalcont"></div>
+				{{$ctrl.text}}
+			</div>
+			<div class="spinner" id="spinner" style="display:none">
+					<div class="spinner-container container1">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					<div class="spinner-container container2">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					<div class="spinner-container container3">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.okbtn()" id="okbtn" style="display:none">
+					确定
+				</button>
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+		<br><br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>
+</div>
+
+<!--<uib-progressbar ng-click="$ctrl.setval()" value="$ctrl.val" type="success">{{$ctrl.val}}%</uib-progressbar>
+<div class="progress progress-striped">
+    <div class="progress-bar progress-bar-info" role="progressbar"
+         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+         style="width: {{$ctrl.val}}%;">
+        <span class="sr-only">{{$ctrl.val}}% 完成（信息）</span>
+		<span class="sr-only">{{$ctrl.val}}% 未完成（信息）</span>
+    </div>
+</div>-->

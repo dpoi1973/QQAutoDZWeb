@@ -1,0 +1,32 @@
+<div class="component">
+<!--<div>
+    <p style="color:red">
+      <input type="submit" class="btn btn-default" ng-click="$ctrl.add()" value="添加">
+      <input type="submit" class="btn btn-default" ng-click="$ctrl.modify()" value="修改">
+      <input type="submit" class="btn btn-default" ng-click="$ctrl.del()" value="删除">
+     <input ng-model="keyword" placeholder="搜索" style="width:300px;" />
+    <input class="btn btn-primary" type="submit" id="submit" value="搜索" ng-click="$ctrl.findAll(keyword)" />
+    </p>
+</div>-->
+<div class="public-button" style="height:33px">
+      <div style="float:right">
+        <input type="submit" id="submit" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(keyword)" value="搜索">
+        <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.add()" value="添加">
+        <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.modify()" value="修改">
+        <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.del()">删除</button>
+      </div>
+    <div style="float:right; " >
+			<input type="text" class="form-control input-search" ng-model="keyword" my-enter="$ctrl.findAll(keyword)"  placeholder="Name"
+				aria-describedby="basic-addon2">
+		</div>
+    </div>
+
+<!--<div class="row" style="margin-top: 10px; text-align: left">
+      <div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">员工信息</label></div>
+      <div class="col-md-2">
+        <input type="text" ng-model="keyword" aria-describedby="basic-addon2">
+      </div>
+</div>-->
+
+   <div style="height:520px" id="grid2" ui-grid="$ctrl.gridOptions" ui-grid-selection ui-grid-edit ui-grid-resize-columns ui-grid-pinning ui-grid-pagination class="grid"></div>
+</div>

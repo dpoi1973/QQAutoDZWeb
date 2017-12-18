@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{$ctrl.text}}</h3>
+</div>
+<form ng-submit="$ctrl.ok()">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-4">员工名称:</div>
+      <div class="col-md-8">
+        <input ng-model="$ctrl.actionitem.empname" placeholder="empname" style="width:300px" />
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-md-4">员工编号:</div>
+      <div class="col-md-8">
+        <input ng-model="$ctrl.actionitem.empNO" placeholder="empNO" style="width:300px" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">用户:</div>
+      <div class="col-md-8">
+        <input type="radio" ng-value="true" ng-model="$ctrl.actionitem.active"> 启用
+        <input type="radio" ng-value="false" ng-model="$ctrl.actionitem.active"> 禁用
+      </div>
+    </div>
+        <div class="row">
+          <div class="col-md-4">请选择合适的用户:</div>
+          <div class="col-md-8">
+          <ui-select style="width:335px; padding-left:35px" ng-model="$ctrl.actionitem.userinfo" ng-disabled="false" style="width: 300px;"on-select="$ctrl.beSelected($item)">
+          <ui-select-match placeholder="请选择合适的用户！">{{$select.selected.username || $select.selected}}</ui-select-match>
+          <ui-select-choices style="left:35px;width:300px" repeat="item in $ctrl.roleusersdata.datas | filter: $select.search">
+            <span ng-bind-html="item.username | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+          </div>
+        </div>
+  <div class="modal-footer ">
+    <input class="btn btn-primary" type="submit" id="submit" value="确认" />
+    <button class="btn btn-warning " type="button" ng-click="$ctrl.cancel()">取消</button>
+  </div>
+</form>

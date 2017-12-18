@@ -1,0 +1,35 @@
+<div class="component">
+  <div>
+      <div class="public-button" style="height:33px">
+        <div style="float:right">
+           <input type="submit" id="submit" class="btn btn-default btn-sm"  ng-click="$ctrl.findAll(keyword)" value="查询报关单">
+            <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.delete()" value="删除报关单">
+            <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.send()" value="发送报关单">
+            <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.Daoru()" value="导入商品">
+            <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.printer()" value="打印">
+            <!--<button type="button" class="btn btn-default btn-sm" ng-click="isCollapsed = !isCollapsed" style="background-color:#48D2CC;color:#fff">open</button>-->
+        </div>
+        <div style="float:right;" >
+			<input type="text" class="form-control input-search" my-enter="$ctrl.findAll(keyword)"  ng-model="keyword" placeholder="单证类型"
+				aria-describedby="basic-addon2">
+		</div>
+      </div>
+    <hr>
+
+    <div>  
+      <div uib-collapse="!isCollapsed" class="public-showhide">
+          <div >
+            <lable>提运单号</lable> <input type="text"> <lable>业务编号</lable> <input my-enter="$ctrl.findAll(keyword)"  ng-model="keyword" type="text"> <lable>Edino</lable> <input type="text"> 
+          </div>
+          <div>
+            <lable>合同号</lable> <input type="text"> <lable>件数</lable> <input type="text"> <lable>净重</lable> <input type="text">
+          </div>
+          <div>
+            <lable>净重</lable> <input type="text"> <lable>运费</lable> <input type="text"> <lable>进口日期</lable> <input type="text">
+          </div>
+      </div>
+    </div>
+    <div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-pagination  ui-grid-selection ui-grid-exporter id="grid2" class="grid" style="height: 500px;"></div>
+  </div>
+
+</div>

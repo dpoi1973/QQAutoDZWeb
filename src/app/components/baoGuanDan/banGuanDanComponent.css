@@ -1,0 +1,186 @@
+
+  .form-control {
+    height: 29px;
+  }
+  
+  body {
+    min-width:730px;
+    
+  }
+  .detail{
+    font-size:12px;
+  }
+  .clearfix:after { content: ''; display: block; height: 0; clear: both; }
+  .clearfix { zoom: 1; }
+  .clear { clear: both; }
+  ul{
+    list-style:none;
+  }
+  ul li lable{
+    display:inline-block;
+    width:70px;
+    text-align:right;
+    margin-right:8px;
+  }
+  .fl{
+    float:left;
+  }
+  .fr{
+    float:right;
+  }
+  ul li{
+    margin-bottom:3px;
+  }
+  .form-goodscustomer{
+    padding-top: 25px;
+  }
+  .form-goodscustomer-right{
+    padding-top: 25px;
+  }
+  .form-goodscustomer-firstul>li{
+    margin-bottom:9px;
+  }
+  .check-red{
+    color:red;
+  }
+  .check-green{
+    color: rgb(0, 128, 0);
+    font-weight:bold;
+  }
+  .form-goodscustomer-right-p{
+    padding:none; 
+    padding-top:18px;
+    padding-right:10px;
+  }
+  .mytable-tr th{
+    text-align: center;
+  }
+  .mytable-tr td{
+    text-align: center;
+
+  }
+  .mytable-td{
+    width:100px !important;
+  }
+  .mytable-td-shop{
+     white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100px;
+  }
+
+ 
+  
+ .detail-btn{
+   padding-left: 55px;
+   position: fixed;
+   display: block;
+   width: 100%;
+   background-color: #f7f7ff;
+   top: 50px;
+ }  
+.form-goodscustomer input[type=text]:focus, input[type=password]:focus {
+    border:1px solid black;
+    border-color: black;
+    box-shadow: 0 0 5px #000;
+}
+
+
+.form-down{
+  height:23px;
+}
+.detail .dropdown-toggle{
+  padding:0 2px;
+}
+.newinput{
+  display: inline-block !important;
+}
+.detail .btn-group{
+  margin-left:-18px;
+}
+.btn-group .btn{
+  font-size: 1px;
+}
+
+.choice{
+  text-align: center;
+}
+
+.public-input .ng-untouched{
+  display: inline-block;
+}
+.public-input .btn-group{
+  margin-left: 27px;
+}
+
+.public-input .form-control{
+  display: inline-block;
+  width: 130px;
+  padding: 0;
+  height: 24px;
+}
+.form-controlfinish{
+    margin-left: 4px;
+}
+
+.public-button .form-control{
+  padding: 14px 12px;
+  position: relative
+}
+.parabtn .form-control{
+  padding: 3px 10px !important;
+}
+#parabtn .caret{
+  display: none;
+}
+
+.form_search{
+  position: absolute;
+  left: 0;
+  top: 24px;
+}
+.ui-select-bootstrap > .ui-select-choices{
+  width: 130px;
+}
+
+input[type="search"]{
+  width: 130px !important;
+}
+.parabtn input[type="search"]{
+  width: 155px !important;
+}
+.parabtncustname input[type="search"]{
+  width: 195px !important;
+}
+.public-input .dropdown-menu{
+  left:4px;
+  min-width: 130px;
+}
+#sidebar-nav li{
+  margin: 0;
+}
+
+.gaugeoutfit{
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  padding-left: 40px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(1, #fff));
+  margin: 0;
+}
+.ui-select-match{
+  overflow: hidden;
+}
+.grid-select .ui-grid-cell{
+        overflow:inherit;
+    }
+.ui-grid-viewport{
+  width: 100% !important;
+}
+
+#grid tbody tr:hover {
+    background: #ff0000;
+}
+ 

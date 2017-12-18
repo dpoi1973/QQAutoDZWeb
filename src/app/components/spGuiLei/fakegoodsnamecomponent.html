@@ -1,0 +1,29 @@
+    <div class="modal-header">
+        <h3 class="modal-title">fakegoodsname配置</h3>
+    </div>
+    <table id='Hsmodel'>
+        <tr ng-repeat="item in $ctrl.hsmodel" style="border-collapse:separate; border-spacing:10px;height:30px">
+            <!--<td style="width:200px;">
+                {{item.title}}
+            </td>-->
+            <td>
+                <div style="height:130px; padding-top:40px">
+                        <div style="margin-left:190px;width:250px;overflow:auto;text-align:left;border:1px solid #dddddd" id="changevalue"  ng-blur="$ctrl.onblur($event)"  contenteditable="true" ng-keyup="$ctrl.insert($event)" ng-keydown="$ctrl.down($event)"         ng-click="$ctrl.getCurRange(item.index)">
+                            {{item.content}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <div  style="display:none;float:right;padding-right:6%; padding-top:10px; min-width:150px;z-index:999999"  id="auto">
+            <ul style="padding:0; border:1px solid #dddddd;box-shadow: 0px 0px 5px #888888;">
+                    <li ng-repeat="item in $ctrl.sel" class='cli {{item.selcli}}' id='li{{item}}' ng-mouseover="$ctrl.move(item)"  ng-click="$ctrl.selop(item)">{{item.key}}</li>
+            </ul>
+        </div>
+    </table>
+    <!-- 
+    <div ng-bind-html="formathtml"></div>-->
+    <div class="modal-footer">
+        <!--<input type="text" class="form-control" id="pass" name="name" ng-model=hode />-->
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        <button id="modelid" class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>

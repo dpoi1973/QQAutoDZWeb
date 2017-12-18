@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <h3 class="modal-title">申报窗口</h3>
+</div>
+<table id='Hsmodel'>
+    <tr ng-repeat="item in $ctrl.hsmodel">
+        <td>{{item.title}}</td>
+        <td><input type='text'  ng-model="item.content" ng-readonly="{{item.read}}"/></td>
+        <td><input type='button' id="aftercancle" value={{item.action}} style={{item.show}}  ng-click="$ctrl.apply(item.action,item.uw,item.content,item.title)" /></td>
+    </tr>
+</table>
+<table id='guifan' style='display:none'>
+    <tr>
+        <td id='guifancontent'></td>
+    </tr>
+</table>
+
+<div context-menu  id="formathtml" style="display:none">
+    <input type='hidden' id='formatindex' />
+    <p id="formtitle" style="color:#000"></p>
+    <input type='button' id="addselect"  ng-click="$ctrl.addselect()"   value='添加默认值'>
+    <div style="margin:10px 5px" class="dlgcontent" id="content"  ng-click="$ctrl.getCurRange()" ng-keyup="$ctrl.showresult()" contenteditable="true"></div>
+
+    <div id="overlay">
+        <div id="dlgcontent">
+            <input id="editid" type="hidden">
+            <!--<p>名称：</p><input type="text">-->
+            <table id="tokenoperate">
+                <tr>
+                    <td>
+                        名称：
+                    </td>
+                    <td><input id="jsonkey" type="text"></td>
+                </tr>
+                <tr ng-repeat="people in $ctrl.testarr">
+                    <td >
+                        <p id="tokentype">默认值：</p>
+                    </td>
+                    <td><input  type="text" id="option{{people.id}}" ng-keyup="$ctrl.addoption()" custom-autofocus="$index+1 == focusIndex" ng-model='people.data'></td>
+                </tr>
+            </table>
+            <div id="footer"><input type='button' ng-click="$ctrl.updateconfirm()"  value='确定'><input type='button' ng-click="$ctrl.cancle()" value='取消'></div>
+        </div>
+    </div>
+    <div>
+        <p id="cspec" style="display:none"></p>
+    </div>
+</div>
+
+<!--
+<div ng-bind-html="formathtml"></div>-->
+
+<div class="modal-footer">
+    <!--<input type="text" class="form-control" id="pass" name="name" ng-model=hode />-->
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button id="modelid" class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

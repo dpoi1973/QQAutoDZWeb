@@ -1,0 +1,296 @@
+<div class="component">
+    <div style="height:600px;overflow:auto">
+        <p>
+            <input type="submit" class="btn btn-default" ng-click="$ctrl.Save()" value="新建单证">
+            <input type="submit" class="btn btn-default" ng-click="$ctrl.Delete()" value="复制单证">
+            <input type="submit" class="btn btn-default" ng-click="$ctrl.Delete()" value="保存单证">
+        </p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">主要单证信息</h3>
+            </div>
+            <div class="panel-body">
+                <table style="border-collapse:separate; border-spacing:5px 5px;">
+                    <tbody>
+                        <tr>
+                            <td>报检申请号</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Inv_no"></td>
+                            <td>报检号</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_No"></td>
+                            <td>报检类别</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_Type_Name"></td>
+                            <td>报检员代码</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_Persn_Cert_No"></td>
+                            <!--<td style="margin-left:10px">
+                                <button type="button" ng-click="isCollapsed = !isCollapsed">open</button></td>-->
+                        </tr>
+                         <!--uib-collapse="!isCollapsed"-->
+                        <tr>
+                            <td>报检单位</td>
+                            <td>
+                                <input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_Reg_No">
+                            </td>
+                            <td colspan="2">
+                                <input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_Reg_Name">
+                            </td>
+                            <td>联系人</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Contactperson"></td>
+                            <td>联系电话</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Cont_Tel"></td>
+                        </tr>
+                        <tr>
+                            <td>收货人注册号</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignee_Code">
+                            </td>
+                            <td>收货人名称</td>
+                            <td colspan="3"><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignee_Cname"></td>
+                            <td>英文名称</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignee_Ename"></td>
+                        </tr>
+                        <tr>
+                            <td>发货人注册号</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignor_Code">
+                            </td>
+                            <td>发货人名称</td>
+                            <td colspan="3"><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_Cname"></td>
+                            <td>英文名称</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_Ename"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">报检货物信息</h3>
+            </div>
+            <div class="panel-body">
+                <table style="border-collapse:separate; border-spacing:5px 5px;">
+                    <tbody>
+                        <tr>
+                            <td>货物HS编码</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Inv_no"></td>
+                            <td>货物名称</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_No"></td>
+                            <td>英文名字</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_type_name"></td>
+                            <td>货物规格</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Apl_person"></td>
+                            <!--<td>
+                                <button type="button" ng-click="isCollapsed1 = !isCollapsed1">open</button>
+                                </td>-->
+                        </tr>
+                        <tr>
+                            <td>原产国</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Apl_name"></td>
+                            <td>货物单价</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Apl_linkman"></td>
+                            <td>包装件数</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Apl_tel"></td>
+                            <td>包装种类</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Apl_tel"></td>
+                        </tr>
+                        <tr>
+                            <td>数量</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignee_code">
+                            </td>
+                            <td>种类</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignee_cn"></td>
+                            <td>货物总值</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignee_en"></td>
+                            <td>币种</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_en"></td>
+                        </tr>
+                        <tr>
+                            <td>标准量</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignor_code">
+                            </td>
+                            <td>CIQ编码</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_cn"></td>
+                            <td>废旧物品</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_en"></td>
+                            <td>用途</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_en"></td>
+                        </tr>
+                        <tr>
+                            <td>鉴重方式</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignor_code">
+                            </td>
+                            <td>验证条件</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_cn"></td>
+                            <td>检验方式</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_en"></td>
+                            <td>工作方式</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_en"></td>
+                        </tr>
+                        <tr>
+                            <td>监管条件</td>
+                            <td><input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignor_code"></td>
+                            <td>许可证/审批号</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Consignor_cn"></td>
+                            <td colspan="2"><input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Consignor_code"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">运输及合同信息</h3>
+            </div>
+            <div class="panel-body">
+                <table style="border-collapse:separate; border-spacing:5px 5px;">
+                    <tbody>
+                        <tr>
+                            <td>运输工具</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Trans_Mode_Name"></td>
+                            <td>名称</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.traf_name"></td>
+                            <td>号码</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.voyage_no"></td>
+                            <td>吨位</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Convey_tons"></td>
+                            <!--<td style="margin-left:10px">
+                                <button type="button" ng-click="isCollapsed2 = !isCollapsed2">open</button></td>-->
+                        </tr>
+                        <tr>
+                            <td>合同号</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Contract_no">
+                            </td>
+                            <td>提运单号</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Bl_no"></td>
+                            <td>贸易方式</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Trade_Mode_Name"></td>
+                            <td>贸易国别</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Trade_area_name"></td>
+                        </tr>
+                        <tr>
+                            <td>到货日期</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Arrive_date">
+                            </td>
+                            <td>卸毕日期</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Cmpl_Dschrg_Dt"></td>
+                            <td>随附单据</td>
+                            <td colspan="3">
+                                <ui-select ng-model="$ctrl.detailInfoData.Atta_Collect_Name" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)">
+                                    <ui-select-match>{{$select.selected.custname || $select.selected}}</ui-select-match>
+                                    <ui-select-choices refresh="$ctrl.searchAsynccustname($select.search) " refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index ">
+                                        <div ng-bind-html="item.custname | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>所需单证</td>
+                            <td>
+                                <ui-select ng-model="$ctrl.searchCondition.condition.custid" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)">
+                                    <ui-select-match>{{$select.selected.custname || $select.selected}}</ui-select-match>
+                                    <ui-select-choices refresh="$ctrl.searchAsynccustname($select.search) " refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index ">
+                                        <div ng-bind-html="item.custname | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </td>
+                            <td>特殊要求</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Spec_clause"></td>
+                            <td>标记及号码</td>
+                            <td><input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Mark"></td>
+                            <td>一体化标志</td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                            <td>异地申领</td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>证单申领机构</td>
+                            <td><input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Mark"></td>
+                            <td>报关关区</td>
+                            <td><input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Mark"></td>
+                            <td>提货单号</td>
+                            <td><input type="text" style="width:100%"></td>
+                            <td>外贸投资财产</td>
+                            <td class="checkbox"><input type="checkbox" style="text-algin:center"></td>
+                            <td>是否退运</td>
+                            <td class="checkbox"><input type="checkbox" style="text-algin:center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">其它单证附加信息</h3>
+            </div>
+            <div class="panel-body">
+                <table style="border-collapse:separate; border-spacing:5px 5px;">
+                    <tbody>
+                        <tr>
+                            <td>企业性质</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Corp_attr_name"></td>
+                            <td>报检日期</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Decl_Date"></td>
+                            <td>施检机构</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Insp_Org_Name"></td>
+                            <td>目的机构</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Purp_Org_Name"></td>
+                            <!--<td style="margin-left:10px">
+                                <button type="button" ng-click="isCollapsed3 = !isCollapsed3">open</button></td>-->
+                        </tr>
+                        <tr>
+                            <td>启动国家</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Desp_Ctry_Code">
+                            </td>
+                            <td>启动口岸</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Desp_Port_Code"></td>
+                            <td>经停口岸</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Port_Stop_Code"></td>
+                            <td>入境口岸</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Enty_Port_Code"></td>
+                        </tr>
+                        <tr>
+                            <td>入境目的地</td>
+                            <td>
+                                <input type="text" style="width:100%;" ng-model="$ctrl.detailInfoData.Destination_name">
+                            </td>
+                            <td>货物存放地</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Goods_place"></td>
+                            <td>索赔有效期</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData.Arrive_date"></td>
+                            <td>报关地</td>
+                            <td class="checkbox"><input type="checkbox" style="width:100%;text-algin:center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">报检集装箱信息</h3>
+            </div>
+            <div class="panel-body">
+                <table style="border-collapse:separate; border-spacing:5px 5px;">
+                    <tbody>
+                        <tr>
+                            <td>集装箱规格</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData."></td>
+                            <td>数量</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData."></td>
+                            <td>号码</td>
+                            <td><input type="text" style="width:100%" ng-model="$ctrl.detailInfoData."></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

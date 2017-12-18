@@ -1,0 +1,190 @@
+<div class="component w">
+	<div>
+		<p><input type="submit" class="btn btn-default btn-primary" value="保存" data-target="#myModal" ng-click="$ctrl.billsavedetailInfo()">
+			<input type="submit" class="btn btn-default btn-primary" value="删除" data-target="#myModal" ng-click="$ctrl.deletefile()">
+			<input type="submit" class="btn btn-default btn-primary" value="上传" ng-click="$ctrl.upload()">
+			<input type="submit" class="btn btn-default btn-primary" value="下载" ng-click="$ctrl.download()">
+			<input type="submit" class="btn btn-default btn-primary" value="查看商品信息" ng-click="$ctrl.viewCommodity()">
+
+		</p>
+		<br>
+		<!--<div style="margin-top:10px">
+			<div class="row" style="margin-top: 10px">
+				<div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">结算企业名称</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.settlement_name"></div>
+				<div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">经营单位企业名称</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.business_name"></div>
+			</div>
+			<div class="row" style="margin-top: 3px">
+				<div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">合同企业名称</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.contract_name"></div>
+                <div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">客户代为保管账号</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.account"></div>
+			</div>
+			<div class="row" style="margin-top: 3px">
+				<div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">客户代为保管密码</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.password"></div>
+                <div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">结算模式</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.settlement_mode"></div>
+			</div>
+			<div class="row" style="margin-top: 3px">
+				<div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">待结算金额</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.unsettlement_money"></div>
+                				<div class="col-md-2" style="text-align: right; margin-top: 3px"><label for="exampleInputName2">未退回金额</label></div>
+				<div class="col-md-3"><input type="text" style="width: 100%" ng-model="$ctrl.detailInfoData.unback_money"></div>
+
+			</div>
+		</div>-->
+		<div class="ywinfo-lab">
+			<div>
+				<lable>经营单位</lable> <input type="text" ng-model="$ctrl.detailInfoData.trade_name">
+				<lable>结算企业名称</lable> <input type="text" ng-model="$ctrl.detailInfoData.settlement_name">
+				<lable>合同企业名称</lable> <input type="text" ng-model="$ctrl.detailInfoData.contract_name">	
+				<lable>操作人:</lable> <input type="text" ng-model="$ctrl.detailInfoData.back5">		
+			</div>
+			<div>
+				<lable>客户保管账号</lable> <input type="text" ng-model="$ctrl.detailInfoData.account">
+				<lable>客户保管密码</lable> <input type="text" ng-model="$ctrl.detailInfoData.password">
+				<!--<input type="text" ng-model="$ctrl.detailInfoData.settlement_mode">-->
+				<lable>交接模式</lable>
+				<select ng-model="$ctrl.detailInfoData.hand_mode" style="width:170px" ng-value="$ctrl.hand_mode">
+					<option ng-repeat="item in  $ctrl.hand_modellist" value="{{item}}">{{item}}</option>
+				</select>
+				<!--<input type="text" ng-model="$ctrl.detailInfoData.hand_mode">-->
+				<lable>交接明细</lable> <input type="text" ng-model="$ctrl.detailInfoData.hand_detail">
+			</div>
+			<div>
+				<lable>待结算金额</lable> <input type="text" ng-model="$ctrl.detailInfoData.unsettlement_money">
+				<lable>未退回金额</lable> <input type="text" ng-model="$ctrl.detailInfoData.unback_money">
+								<lable>结算模式</lable>
+				<select ng-model="$ctrl.detailInfoData.settlement_mode" style="width:170px" ng-value="$ctrl.settlementModel">
+					<option ng-repeat="item in  $ctrl.settlementModellist" value="{{item}}">{{item}}</option>
+				</select>
+			</div>
+			<hr>
+			<div>
+				<lable>业务收费</lable> <input type="text" ng-model="$ctrl.showcharge.ywfee">
+				<lable style="width:40px">单位</lable>
+				<select name="" id="">
+                    <option value="sku">sku</option>
+                 </select>
+				<lable>第二收费</lable> <input type="text" ng-model="$ctrl.showcharge.secfee">
+				<lable>收费模式</lable>
+				<select name="" id="" style="width:135px">
+                    <option value="" style="display:none">同品名</option>
+                    <option value="">同品名</option>
+                 </select>
+				<lable style="width:40px">单位</lable>
+				<select name="" id="">
+                    <option value="" style="display:none">sku</option>
+                    <option value="">sku</option>
+                 </select>
+			</div>
+			<div>
+				<lable>延期</lable> <input type="text"  ng-model="$ctrl.showcharge.delayfee">
+				<lable style="width:40px">单位</lable>
+				<select name="" id="">
+                    <option value="" style="display:none">sku</option>
+                    <option value="">sku</option>
+                 </select>
+				<lable>咨询收费</lable> <input type="text"  ng-model="$ctrl.showcharge.consfee">
+				<lable>单位</lable>
+				<select name="" id="">
+                    <option value="" style="display:none">sku</option>
+                    <option value="">sku</option>
+                 </select>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-resize-columns ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize
+		 class="grid" style="height:350px"></div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+						<h4 class="modal-title" id="myModalLabel">
+							提示信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						<ul id="uploadbodyul" style="padding:0">
+							<li style="padding-left:37px">
+								<span>上传名称:</span> <input type="text" ng-model="$ctrl.uploadtit" style="display:inline-block; margin-left:8px; width:248px">
+							</li>
+							<li style="margin:5px 0;padding-left:37px">
+								<span>文件上传:</span> <input type="file" id="uploadfile" name="myfile2" style="display:inline-block; margin-left:8px">
+							</li>
+							<!--<li style="padding-left:37px">
+						<span>选择类型:</span> 
+						<select name="" id="" style="width:248px; margin-left:8px" ng-change="$ctrl.classfiedtype()" ng-model="$ctrl.uploadfiletype">
+							<option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+								<option ng-repeat="x in $ctrl.filtypelist">{{x}}</option>
+						</select>
+					</li>-->
+							<li id="strrtli">
+								<div style="padding:0;">
+									<span>开始时间: </span>
+									<p class="input-group" style="color:black;display:inline-flex; width:218px">
+										<input id="strattime" type="text" class="form-control" uib-datepicker-popup ng-model="$ctrl.dt" is-open="$ctrl.popup2.opened"
+										 datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="关闭" readonly style="height:30px;" placeholder="起始时间"
+										 current-text="今天" clear-text="清除" close-text="关闭" />
+										<span class="input-group-btn" style="height:30px;">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.open()" style="padding:4px 13px;"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+									</p>
+								</div>
+							</li>
+							<li id="endli">
+								<div style="padding:0;">
+									<span>结束时间: </span>
+									<p class="input-group" style="color:black; display:inline-flex; width:218px">
+										<input id="endtime" type="text" class="form-control" uib-datepicker-popup ng-model="$ctrl.enddt" is-open="$ctrl.endpopup2.opened"
+										 datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="关闭" readonly style="height:30px;" placeholder="截止时间"
+										 current-text="今天" clear-text="清除" close-text="关闭" />
+										<span class="input-group-btn" style="height:30px;">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.endopen()" style="padding:4px 13px;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+									</p>
+								</div>
+							</li>
+
+						</ul>
+						<div class="spinner" id="spinner" style="display:none">
+							<div class="spinner-container container1">
+								<div class="circle1"></div>
+								<div class="circle2"></div>
+								<div class="circle3"></div>
+								<div class="circle4"></div>
+							</div>
+							<div class="spinner-container container2">
+								<div class="circle1"></div>
+								<div class="circle2"></div>
+								<div class="circle3"></div>
+								<div class="circle4"></div>
+							</div>
+							<div class="spinner-container container3">
+								<div class="circle1"></div>
+								<div class="circle2"></div>
+								<div class="circle3"></div>
+								<div class="circle4"></div>
+							</div>
+						</div>
+						<div id="message">
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" ng-click="$ctrl.confirmupload()" id="confirmuploadbtn">确定
+				</button>
+						<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>

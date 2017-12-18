@@ -1,0 +1,141 @@
+<div class="component">
+	<!--写入代码-->
+	<div>
+		<div class="public-button">
+			<div style="float:right">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)">查询</button>
+			<button id="modelid" class="btn btn-default btn-sm" type="button" ng-click="$ctrl.stategodetail()">查看详情</button>
+			<button id="modelid" class="btn btn-default btn-sm" type="button" ng-click="$ctrl.openuploadzip()">导入</button>
+			<!--<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.beforehandadd()">预添加</button>-->
+			<input type="submit" class="btn btn-default btn-sm" value="通过"  data-target="#myModal" ng-click="$ctrl.statuspass()">
+            <input type="submit" class="btn btn-default btn-sm" value="驳回"  data-target="#myModal" ng-click="$ctrl.statusreject()">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.delete()">删除</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.addnew()">添加</button>
+			<!--<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.batchuplod()">批量上传</button>-->
+		   </div>
+		    <div style="float: right;" >
+			<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder="查询"
+				aria-describedby="basic-addon2">
+                <!--$ctrl.searchCondition.condition.description-->
+		    </div>
+			<!--<div style="float: left;">
+				<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findfile(modelkeyfile)" ng-model="modelkeyfile" placeholder="文件名查询"
+					aria-describedby="basic-addon2">
+			</div>-->
+			<div class="input-group select2-bootstrap-append" style="display:inline-block">
+						<ui-select ng-model="$ctrl.selectcompany" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+						<ui-select-match allow-clear="true"   placeholder="请输入客户名称...">{{$select.selected.trade_name || $select.selected}}
+						</ui-select-match>
+						<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index " style="width:256px">
+						<div ng-bind-html="item.trade_name | highlight: $select.search"></div>
+									<!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+						</ui-select-choices>
+					</ui-select>
+					<span class="input-group-btn" style="margin-left:-38px; display:inline-block; height:29px">
+						<button  type="button" class="btn selectclose" ng-click="$ctrl.removecompany()" style="height:29px; background-image: linear-gradient(to top, #fff 0%, #eee 50%);border: 1px solid #aaa;border-left:none">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</span>
+			</div>
+<!--
+			<ui-select ng-model="$ctrl.selectcompany" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+				<ui-select-match  placeholder="请输入客户名称...">{{$select.selected.trade_name || $select.selected}}</ui-select-match>
+				<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index " style="width:256px">
+				<div ng-bind-html="item.trade_name | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>-->
+               节点从 
+			   <div class="input-group select2-bootstrap-append" style="display:inline-block; width:120px">
+				   <ui-select ng-model="$ctrl.nodea" class="spguilei" theme="select2" ng-disabled="false" style="width:100px">
+				<ui-select-match  placeholder="请选择节点">{{$select.selected.name || $select.selected}}</ui-select-match>
+                <ui-select-choices style="width:100px"   repeat=" item.id as item in $ctrl.nodes " style="width:256px">
+				<div ng-bind-html="item.name | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<span class="input-group-btn" style="margin-left:-38px; display:inline-block; height:29px">
+						<button  type="button" class="btn selectclose" ng-click="$ctrl.removestartstatus()" style="height:29px; background-image: linear-gradient(to top, #fff 0%, #eee 50%);border: 1px solid #aaa;border-left:none">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+			</span>
+			   </div>
+            到
+			<div class="input-group select2-bootstrap-append" style="display:inline-block; width:120px">
+				<ui-select ng-model="$ctrl.nodeb" class="spguilei" theme="select2" ng-disabled="false" style="width:100px">
+					<ui-select-match  placeholder="请选择节点">{{$select.selected.name || $select.selected}}</ui-select-match>
+					<ui-select-choices style="width:100px"   repeat=" item.id as item in $ctrl.nodes " style="width:100px">
+					<div ng-bind-html="item.name | highlight: $select.search"></div>
+					</ui-select-choices>
+				</ui-select>
+				<span class="input-group-btn" style="margin-left:-38px; display:inline-block; height:29px">
+					<button  type="button" class="btn selectclose" ng-click="$ctrl.removeendstatus()" style="height:29px; background-image: linear-gradient(to top, #fff 0%, #eee 50%);border: 1px solid #aaa;border-left:none">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+			   </span>
+			</div>
+			</div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                提示信息
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul id="uploadbodyul" style="padding:0">
+                                <li>
+                                    <span>填入名称:</span> <input type="text" ng-model="$ctrl.uploadtit" style="display:inline-block; margin-left:8px; width:248px">
+                                </li>
+                                <li style="margin:5px 0">
+                                    <span>文件上传:</span> <input type="file" id="uploadfile" name="myfile2" style="display:inline-block; margin-left:8px">
+                                </li>
+                            </ul>
+                            <div class="spinner" id="spinner" style="display:none">
+                                <div class="spinner-container container1">
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                    <div class="circle3"></div>
+                                    <div class="circle4"></div>
+                                </div>
+                                <div class="spinner-container container2">
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                    <div class="circle3"></div>
+                                    <div class="circle4"></div>
+                                </div>
+                                <div class="spinner-container container3">
+                                    <div class="circle1"></div>
+                                    <div class="circle2"></div>
+                                    <div class="circle3"></div>
+                                    <div class="circle4"></div>
+                                </div>
+                            </div>
+                            <div id="message">
+
+						    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-click="$ctrl.confirmupload()" id="confirmuploadbtn">确定
+                            </button>
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+        <div id="overlayzip">
+				<ul id="tokenoperatezip">
+					<li>
+						<input style="margin-left:52px; margin-top:20px" type="file" file-model="myFile" id="myFilezip">
+					</li>
+					<div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" ng-click="$ctrl.save()" data-target="#myModal" value='确定' /><input type='button' ng-click="$ctrl.canclezip()" value='取消'/></div>
+				</ul>
+			</div>
+		<br>
+		<br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-resize-columns ui-grid-edit ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>

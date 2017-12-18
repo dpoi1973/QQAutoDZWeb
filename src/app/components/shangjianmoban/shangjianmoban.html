@@ -1,0 +1,68 @@
+<div class="component">
+	<!--写入代码-->
+	<div style="padding-left:20px;">
+		<div class="public-button">
+			<div style="float: right">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.search()">查询</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.delete()">删除</button>
+			<!--<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.newmoban()">新建模板</button>-->
+		</div>
+		<div style="float:right; " >
+			<input type="text" class="form-control input-search" my-enter="$ctrl.search()"  ng-model="$ctrl.searchCondition.condition.TempleteName"
+				aria-describedby="basic-addon2">
+		</div>
+		</div>
+<!--弹出层-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示信息
+				</h4>
+			</div>
+			<div class="modal-body" id="modalbody">
+				{{$ctrl.text}}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.okbtn()" id="okbtn" style="display:none">
+					确定
+				</button>
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示信息
+				</h4>
+			</div>
+			<div class="modal-body" id="modalbody">
+				{{$ctrl.text}}
+			</div>
+			<div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.okbtn()" id="okbtn" style="display:none">
+					确定
+				</button>
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+		<br><br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-pinning  ui-grid-resize-columns ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>

@@ -1,0 +1,123 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <button type="button" ng-click="$ctrl.toggleclass= !$ctrl.toggleclass" class="hamburger is-closed animated fadeInLeft" id="offcanvas" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
+    <ul class="nav nav-pills" style="margin-top:3px;margin-left:20px">
+        <li class="company-logo">上海万历报关有限公司 （{{$ctrl.tittext}}）</li>
+        <button  type="button" style="margin-top:6px" class="btn btn-default pull-right company-btn" ng-hide="visible" ng-click="$ctrl.login()">登录</button>
+        <button  type="button" style="margin-top:6px" class="btn btn-default pull-right company-btn" ng-hide="visible" ng-click="$ctrl.register()">注册</button>
+       <span ng-show="visible" style="display:block; float:right">
+		    <span style=" margin-top:6px; margin-right:30px; display:inline-block; font-size:20px; float:left"><span style="float:left; margin-top:3px" class="glyphicon glyphicon-globe" aria-hidden="true"></span><span style="margin-left:8px;">{{$ctrl.userName}}</span></span>
+			<button style="margin-top:6px;" type="button" style="margin-top:3px" class="btn btn-default pull-right company-btn" ng-click="$ctrl.exit()">退出</button>
+      </span>
+    </ul>
+</nav>
+<div id="wrapper"  ng-class="{toggled:$ctrl.toggleclass}">
+			<div class="overlay"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav" id="sidebar-nav">
+					<!--<li>
+						<a ui-sref="luWei.list"><i class="fa fa-fw fa-folder"></i>路威</a>
+					</li>
+					<li>
+						<a ui-sref="transport.list"><i class="fa fa-fw fa-folder"></i>运输test</a>
+					</li>-->
+					<li>
+						<a ui-sref="waibuShuJu.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-folder"></i>外部数据管理</a>
+					</li>
+					<li>
+						<a ui-sref="ywInfo.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-dropbox"></i>业务数据</a>
+					</li>
+					<li>
+						<a ui-sref="ywInfocopy.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-dropbox"></i>全球业务数据</a>
+					</li>
+					<li>
+						<a ui-sref="baoGuanDanComponent.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-bank"></i>报关单列表</a>
+					</li>
+					<li>
+						<a ui-sref="hsCodeHelp.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-folder"></i> 税则查询</a>
+					</li>
+					<li>
+						<a ui-sref="manualguilei.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-folder"></i> 手动归类</a>
+					</li>
+					<li uib-dropdown class="power quanxina" id="power">
+						<a href="#" uib-dropdown-toggle ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-plus"></i> 归类 <span class="caret"></span></a>
+						<ul uib-dropdown-menu role="menu" aria-labelledby="split-button" id="powerul">
+							<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a ng-click="$ctrl.testtext($event)" ui-sref="spXinXi.list"><i class="fa fa-fw fa-file-o"></i> 商品数据库</a></li>
+							<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a ng-click="$ctrl.testtext($event)" ui-sref="spXinXiceshi.list"><i class="fa fa-fw fa-file-o"></i>商品预录入</a></li>
+							<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a ng-click="$ctrl.testtext($event)" ui-sref="spGuiLei.list"><i class="fa fa-fw fa-cog"></i>归类数据库</a></li>
+							<!--<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a ng-click="$ctrl.testtext($event)" ui-sref="manualguilei.list"><i class="fa fa-fw fa-cog"></i>手动预归类</a></li>-->
+						</ul>
+					</li>
+					<li uib-dropdown class="power quanxina" id="powertwo">
+						<a href="#" uib-dropdown-toggle ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-plus"></i> 预归类模块 <span class="caret"></span></a>
+						<ul uib-dropdown-menu role="menu" aria-labelledby="split-button" id="powerul">
+							<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a ui-sref="yuguileibill.list"><i class="fa fa-fw fa-file-o"></i> 客户管理</a></li>
+							<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a  ui-sref="classifieddata.list"><i class="fa fa-fw fa-cog"></i>归类数据</a></li>
+							<!--<li role="menuitem" ui-sref-active="active" ng-click="$ctrl.testtext($event)"><a  ui-sref="archivecomponent.list"><i class="fa fa-fw fa-cog"></i>归档文件</a></li>-->
+						</ul>
+					</li>
+
+					<li uib-dropdown class="power quanxina" id="power">
+						<a href="#" uib-dropdown-toggle ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-plus"></i> 模板 <span class="caret"></span></a>
+						<ul uib-dropdown-menu role="menu" aria-labelledby="split-button" id="powerul">
+							<li role="menuitem" ui-sref-active="active"><a ng-click="$ctrl.testtext($event)" ui-sref="muBan.list"><i class="fa fa-fw fa-dropbox"></i> 报关单模板</a></li>
+							<li role="menuitem" ui-sref-active="active"><a ng-click="$ctrl.testtext($event)" ui-sref="shangjianmoban.list"><i class="fa fa-fw fa-dropbox"></i> 商检模板</a></li>
+						</ul>
+					</li>
+					<!--<li>
+						<a ui-sref="shangjianmoban.list"><i class="fa fa-fw fa-dropbox"></i> 商检模板</a>
+					</li>-->
+					<li>
+						<a ui-sref="shangjianShuJu.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-dropbox"></i> 商检数据</a>
+					</li>
+					<!--<li>
+						<a ui-sref="autojudgeinfo.list"><i class="fa fa-fw fa-dropbox"></i> autojudgeinfo</a>
+					</li>-->
+					<!--<li>
+						<a ui-sref="paracom.list"><i class="fa fa-fw fa-dropbox"></i> paracom</a>
+					</li>
+					<li>
+						<a ui-sref="custmanager.list"><i class="fa fa-fw fa-dropbox"></i> 客户管理</a>
+					</li>-->
+					<li uib-dropdown class="power canshu" id="power">
+						<a href="#" uib-dropdown-toggle ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-plus"></i> 参数配置 <span class="caret"></span></a>
+						<ul uib-dropdown-menu role="menu" aria-labelledby="split-button" id="powerul">
+							<li role="menuitem" ui-sref-active="active"><a ng-click="$ctrl.testtext($event)" ui-sref="paracom.list"><i class="fa fa-fw fa-dropbox"></i> paracom</a></li>
+							<li role="menuitem" ui-sref-active="active"><a ng-click="$ctrl.testtext($event)" ui-sref="autojudgeinfo.list"><i class="fa fa-fw fa-dropbox"></i> autojudgeinfo</a></li>
+							<li role="menuitem" ui-sref-active="active"><a ng-click="$ctrl.testtext($event)" ui-sref="custmanager.list"><i class="fa fa-fw fa-dropbox"></i> 客户管理</a></li>
+						</ul>
+					</li>
+					<li>
+						<a ui-sref="compulsoryCertification.list" ng-click="$ctrl.testtext($event)"><i class="fa fa-fw fa-dropbox"></i> 免3C</a>
+					</li>
+					<li uib-dropdown class="power quanxina" id="power">
+						<a href="#" ng-click="$ctrl.testtext($event)" uib-dropdown-toggle><i class="fa fa-fw fa-plus"></i> 权限管理 <span class="caret"></span></a>
+						<ul uib-dropdown-menu role="menu" aria-labelledby="split-button" id="powerul">
+							<li role="menuitem" ng-click="$ctrl.testtext($event)" ui-sref-active="active"><a ui-sref="userAdmin">微信用户管理</a></li>
+							<li role="menuitem" ng-click="$ctrl.testtext($event)" ui-sref-active="active"><a ui-sref="authControllerlist">权限管理</a></li>
+							<li role="menuitem" ng-click="$ctrl.testtext($event)" ui-sref-active="active"><a ui-sref="roleControllerlist">角色管理</a></li>
+							<li role="menuitem" ng-click="$ctrl.testtext($event)" ui-sref-active="active"><a ui-sref="userListComponent">用户管理</a></li>
+							<li role="menuitem" ng-click="$ctrl.testtext($event)" ui-sref-active="active"><a ui-sref="employeeListComponent">员工管理</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+		
+				<div class="container">
+					<div class="row">
+
+						<ui-view></ui-view>
+
+					</div>
+				</div>
+			</div>
+		</div>

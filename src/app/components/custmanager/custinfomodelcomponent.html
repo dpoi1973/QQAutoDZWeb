@@ -1,0 +1,26 @@
+    <div class="modal-header">
+        <h3 class="modal-title">proinfoconfig配置</h3>
+    </div>
+    <table id='Hsmodel' style="margin:0 auto">
+        <tr ng-repeat="item in $ctrl.hsmodel track by $index" style="border-collapse:separate; border-spacing:10px;height:30px">
+            <td style="width:200px;">
+                 <lable style="margin:0 12px">key:</lable><input type="text" ng-model="item.title">
+            </td>
+            <td>
+                <td style="width:200px;">
+                    <lable style="margin:0 12px">value:</lable><input type="text" ng-model="item.content">
+                </td>
+                <!--<div style="margin-left:40px;width:160px;overflow:auto;max-height:42px;text-align:left;border:1px solid #dddddd" id="{{item.title}}" ng-blur="$ctrl.onblur($event)"  contenteditable="true" ng-keyup="$ctrl.insert($event)" ng-keydown="$ctrl.down($event)" ng-click="$ctrl.getCurRange(item.index)">
+                    {{item.content}}
+                </div>-->
+            </td>
+        </tr>
+    </table>
+    <!-- 
+    <div ng-bind-html="formathtml"></div>-->
+    <div class="modal-footer">
+        <!--<input type="text" class="form-control" id="pass" name="name" ng-model=hode />-->
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.addhsmodel()">添加</button>
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">确定</button>
+        <button id="modelid" class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+    </div>

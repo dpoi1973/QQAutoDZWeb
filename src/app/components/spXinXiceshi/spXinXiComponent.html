@@ -1,0 +1,89 @@
+<div class="component">
+  <div>
+    <div class="public-button" style="height:33px">
+					<ui-select ng-model="$ctrl.selectcompany" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+							<ui-select-match  placeholder="请输入客户名称...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+							<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index " style="width:256px">
+							<div ng-bind-html="item.custname | highlight: $select.search"></div>
+							<!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+							</ui-select-choices>
+					</ui-select>
+			<!--<input style="margin-left:50px; margin-top:18px" type="checkbox" id="searchproductid" ng-click="$ctrl.checkproductid()"> ClassifiedProductid-->
+      <div style="float:right">
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)" value="查询">
+			<!--相关操作的dropdown-->
+			<div class="btn-group" uib-dropdown is-open="status.isopen">
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    相关操作<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                 <li role="menuitem" ng-click="$ctrl.Daoru()"><a href="#">添加商品信息</a></li>
+								 <!--<li role="menuitem" ng-click="$ctrl.jsonfrommd()"><a href="#">同表更新templatejson</a></li>-->
+								 <li role="menuitem" ng-click="$ctrl.refreshmd5andlink()"><a href="#">更新md5key</a></li>
+                 <li role="menuitem" ng-click="$ctrl.manualattachcust()"><a href="#">批量关联确认</a></li>
+                 <li role="menuitem" ng-click="$ctrl.backautojudgeinfo()"><a href="#">预归类</a></li>
+                 <li role="menuitem" ng-click="$ctrl.filllastcspec()"><a href="#">生成申报要素</a></li>
+                 <li role="menuitem" ng-click="$ctrl.productmovetofin()"><a href="#">移到最终产品</a></li>
+                 <li role="menuitem" ng-click="$ctrl.openupload()"><a href="#">上传内容</a></li>
+            </ul>
+      </div>
+			<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.delete()" value="删除商品信息">
+      <!--<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.Daoru()" value="添加商品信息">
+			<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.syntemj()" value="同步templatejson">
+			<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.syntemjlocal()" value="同表更新templatejson">-->
+			<!--<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.syntemjlocal()" value="同表更新templatejson">
+			<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.refreshmd5andlink()" value="批量关联">
+			<input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.confirmtoprototal()" value="批量确认">-->
+      <!--<button type="button" class="btn btn-default btn-sm" ng-click="isCollapsed = !isCollapsed" style="background-color:#48D2CC;color:#fff">open</button>-->
+     </div>
+           <div id="overlay">
+        <div id="dlgcontent">
+          <table id="tokenoperate" style="margin:20px auto">
+            <tr>
+              <td>
+                文件类型：
+              </td>
+              <td><select id="ftype" style="width:200px">
+                <option value='product'>产品</option>
+                <option value='kwedic'>kwedic</option>
+                </select></td>
+            </tr>
+            <tr style="height:35px">
+              <td>
+                选择文件：
+              </td>
+              <td><input type="file" id="myfile" name="myfile" style="width:200px"></td>
+            </tr>
+            <tr>
+              <td>
+                选择客户：
+              </td>
+              <td>
+                  <ui-select ng-model="$ctrl.selectcompanycustid" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+                      <ui-select-match  placeholder="请输入客户名称...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+                      <ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index " style="width:256px">
+                      <div ng-bind-html="item.custname | highlight: $select.search"></div>
+                      <!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+                      </ui-select-choices>
+                </ui-select>
+              </td>
+            </tr>
+          </table>
+          <div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.upload()"
+              value='确定' /><input type='button' ng-click="$ctrl.cancle()" value='取消' /></div>
+        </div>
+      </div>
+    <div style="float:right;" >
+			<input type="text" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder=""
+				aria-describedby="basic-addon2">
+		</div>
+    </div>
+    <hr>
+      <div uib-collapse="!isCollapsed" class="public-showhide">
+          <div>
+            <lable>规格</lable> <input ng-model="$ctrl.searchCondition.condition.createdate.startdate" type="text"> <lable>内部编号</lable> <input ng-model="$ctrl.searchCondition.condition.createdate.enddate" type="text"> <lable>状态</lable> <input type="text"> 
+          </div>
+      </div>
+    <div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-resize-columns ui-grid-pagination ui-grid-selection ui-grid-exporter id="grid" class="grid" style="height: 500px"></div>
+  </div>
+</div>

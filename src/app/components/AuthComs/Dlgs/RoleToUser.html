@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{$ctrl.text}}</h3>
+</div>
+<form ng-submit="$ctrl.ok()">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-4">Name:</div>
+      <div class="col-md-8">
+        <input ng-model="$ctrl.actionitem.username" placeholder="Name" style="width:300px" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Action:</div>
+      <div class="col-md-8">
+        <input type="radio" ng-value="true" ng-model="$ctrl.actionitem.active"> 启用
+        <input type="radio" ng-value="false" ng-model="$ctrl.actionitem.active"> 禁用
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Email :</div>
+      <div class="col-md-8">
+        <input ng-model="$ctrl.actionitem.email" placeholder="email" style="width:300px" />
+      </div>
+    </div>
+  </div>
+  <div>
+    <table border="1" align="center">
+      <thead>
+        <tr>
+          <th width="220px"><input ng-model="$ctrl.query"/></th>
+          <th width="80px">操作</th>
+          <th width="220px"><input ng-model="$ctrl.query1"/></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <!--<select ng-model="$ctrl.leftAction" ng-options="y.readableActionName for y in $ctrl.actionDate" multiple size=12 style="width:200px;"></select>-->
+            <div style="overflow:auto; height:200px">
+              <div class="list-group-item" ng-repeat="all in $ctrl.allusersdata|filter:$ctrl.query" ng-click="$ctrl.addRole(all.name)">
+                <a href="#">{{all.name}}</a>
+              </div>
+            </div>
+          </td>
+          <td>
+            &nbsp;&nbsp;<a ng-click="$ctrl.show()">全部</a><br/><br/> &nbsp;&nbsp;
+            <a ng-click="$ctrl.addAction()">添加</a><br/><br/> &nbsp;&nbsp;
+            <a ng-click="$ctrl.delAction()">删除</a>
+          </td>
+          <td>
+            <!--<div class="col-md-8">
+              <select ng-model="$ctrl.rightAction" ng-options="y.readableActionName for y in $ctrl.selecteData" multiple size=12 style="width:200px;"></select>
+            </div>-->
+            <div style="overflow:auto;height:200px">
+              <div class="list-group-item" ng-repeat="rol in $ctrl.roleusersdata | filter:$ctrl.query1" ng-click="$ctrl.removeRole(rol.name)">
+                <a href="#">{{rol.name}}</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer ">
+    <input class="btn btn-primary" type="submit" id="submit" value="确认" />
+    <button class="btn btn-warning " type="button" ng-click="$ctrl.cancel()">取消</button>
+  </div>
+</form>

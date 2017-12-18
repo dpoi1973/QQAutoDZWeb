@@ -1,0 +1,1221 @@
+<div style="min-width:1200px; margin-top:20px">
+	<div class="detail">
+		<div class="detail-btn" style="z-index:2">
+			<table>
+				<tr>
+					<td><input class="btn btn-default" type="submit" value="保存" ng-click="$ctrl.savedetail()"></td>
+					<td><input class="btn btn-default" type="submit" value="添加报关单"></td>
+					<!--<td><input class="btn btn-default" type="submit" value="打印"></td>-->
+					<td><input class="btn btn-default" type="submit" value="修改报关单类型"></td>
+					<td><input class="btn btn-default" type="submit" value="保存为模板"></td>
+					<td><input class="btn btn-default" type="submit" ng-click="$ctrl.saveas()" value="另存为"></td>
+					<td>
+						<div style="width:8px; height:8px; background-color:skyblue; display:inline-block; margin-left:15px"></div> 正常
+						<div style="width:8px; height:8px; background-color:pink; display:inline-block"></div> 必填
+						<div style="width:8px; height:8px; background-color:yellow; display:inline-block"></div> 验证有误
+						<div style="width:8px; height:8px; background-color:#D9D9D9; display:inline-block"></div> 禁用
+						<!--<select id="pid" value="a" name="" id="" ng-change="$ctrl.text()" ng-model="x">
+						<option value="">请选择</option>
+						<option grade="1"  value="a">ie_flag00</option>
+						<option grade="2"  value="b" >ie_flag1</option>
+						<option grade="3"  value="c">ie_flag2</option>
+						<option grade="4"  value="d">ie_flag3</option>
+					    </select>-->
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="form-goodscustomer" style="float:left;">
+			<div class="clearfix">
+				<ul style="float:left" class="form-goodscustomer-firstul">
+					<li><lable>模板名称</lable><input type="text" ng-model="$ctrl.templatevalidate.TempleteName"></li>
+					<li>
+						<lable>商品信息</lable>
+						<input type="text" ng-model="$ctrl.templatevalidate.goodsCustid">
+					</li>
+					<li>
+						<lable>结算客户</lable>
+					  <ui-select ng-model="$ctrl.templatevalidate.CustID" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:250px">
+							<ui-select-match placeholder="请选择...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+							<ui-select-choices refresh="$ctrl.searchAsynccustname($select.search)" refresh-delay="0 " repeat=" item.custname as item in $ctrl.selsource1 track by $index ">
+							<!--<div ng-bind-html="item.HSCode | highlight: $select.search"></div>-->
+							<small ng-bind-html="item.custname | highlight: $select.search"></small>
+							</ui-select-choices>
+					</ui-select>
+					</li>
+					<li>
+						<lable>
+							申报海关
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=2 type="text" style="width:50px" ng-required="$ctrl.templatevalidate.templateObj.DECL_PORT.required"
+							 ng-pattern="$ctrl.templatevalidate.templateObj.DECL_PORT.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.value" readonly="readonly">
+						<div class="btn-group" ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.value" uib-dropdown>
+							<button type="button" class="btn" uib-dropdown-toggle>
+							<span class="caret"></span>
+							<span class="sr-only">Split button!</span>
+							</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly:<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.readonly"></li>
+							</ul>
+						</div>
+						年份
+						<input my-enter="$ctrl.doSomething()" tabindex=3 type="text" style="width:70px"  ng-model="$ctrl.i_e_date"> 标志
+						<input my-enter="$ctrl.doSomething()" tabindex=4 type="text" style="width:70px"  ng-model="$ctrl.logo">
+					</li>
+					<li>
+						<lable>
+							海关编号
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=5 type="text" ng-required="$ctrl.templatevalidate.templateObj.customs_id.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.customs_id.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.customs_id.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.customs_id.value">
+						<div class="btn-group" uib-dropdown ng-model="$ctrl.templatevalidate.templateObj.customs_id.value" my-enter="$ctrl.changereadonlyalla()">
+							<button type="button" class="btn" uib-dropdown-toggle>
+								<span class="caret"></span>
+								<span class="sr-only">Split button!</span>
+							</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.customs_id.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.customs_id.readonly"></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<lable>
+							备案号
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=6 type="text" ng-required="$ctrl.templatevalidate.templateObj.manual_no.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.manual_no.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.manual_no.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.manual_no.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">输入框只读： <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.manual_no.required" ng-change=""></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">输入框禁用： <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.manual_no.readonly" ng-change=""></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<!--change -->
+						<lable ng-show="$ctrl.templatett">
+							进口日期
+						</lable>
+						<!--change --> 
+						<lable ng-hide="$ctrl.templatett">
+							出口日期
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=7 type="text" ng-required="$ctrl.templatevalidate.templateObj.i_e_date.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.i_e_date.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.i_e_date.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.i_e_date.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.i_e_date.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly： <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.i_e_date.readonly"></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<ul style="float:left">
+					<li>
+						<lable>单证类型</lable>
+						<!--<input type="text" ng-model="$ctrl.templatevalidate.templateObj.ie_flag.value">-->
+					<select ng-model="$ctrl.selieflag">
+					      <option ng-repeat="item in  $ctrl.ieflaglist" value="{{item.key}}">{{item.selcli}}</option>
+					</select>
+					<lable>机器名</lable>
+					<select ng-model="$ctrl.machine" >
+					      <option  ng-repeat="x in  $ctrl.machinename">{{x}}</option>
+					</select>
+					</li>
+					<li>
+						<lable>
+							接单备注
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=8 type="text" ng-model="$ctrl.templatevalidate.templateObj.jiedanMemo.value" ng-required="$ctrl.templatevalidate.templateObj.jiedanMemo.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.jiedanMemo.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.jiedanMemo.Regex">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.jiedanMemo.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.jiedanMemo.readonly"></li>
+							</ul>
+						</div>
+						<span ng-show="app.user.$error.required">用户名是必须的。</span>
+					</li>
+					<li>
+						<lable>
+							单证操作
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=9 type="text" style="width:50px;" ng-required="$ctrl.templatevalidate.templateObj.ZhidanPersonName.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.ZhidanPersonName.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.ZhidanPersonName.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.ZhidanPersonName.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.ZhidanPersonName.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.ZhidanPersonName.readonly"></li>
+							</ul>
+						</div>
+						客户业务编号
+						<input my-enter="$ctrl.doSomething()" tabindex=10 type="text" style="width:80px;" ng-required="$ctrl.templatevalidate.templateObj.CustYwno.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.CustYwno.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.CustYwno.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.CustYWNO.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.CustYwno.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.CustYwno.readonly"></li>
+							</ul>
+						</div>
+						<select name="" id="">
+							<option value="">公司打单</option>
+							<option value="">客户打单</option>
+							<option value="">KSD打单</option>
+							<option value="">EDI打单</option>
+						</select>
+					</li>
+					<li>
+						<lable>
+							业务编号
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=11 type="text" ng-required="$ctrl.templatevalidate.templateObj.ywno.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.ywno.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.ywno.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.ywno.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.ywno.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.ywno.readonly"></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<lable>
+							预录入编号
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=12 type="text" ng-required="$ctrl.templatevalidate.templateObj.pre_entry_id.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.pre_entry_id.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.pre_entry_id.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.pre_entry_id.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.pre_entry_id.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.pre_entry_id.readonly"></li>
+							</ul>
+						</div>
+					</li>
+
+					<li>
+						<!--change -->
+						<lable ng-show="$ctrl.templatett">
+							进口口岸
+						</lable>
+						<!--change -->
+						<lable ng-hide="$ctrl.templatett">
+							出口口岸
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=13 type="text" style="width:80px;" ng-required="$ctrl.templatevalidate.templateObj.i_e_port.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.i_e_port.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.i_e_port.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.i_e_port.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.i_e_port.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.i_e_port.readonly"></li>
+							</ul>
+						</div>
+						申报口岸
+						<input my-enter="$ctrl.doSomething()" tabindex=14 type="text" style="width:80px;" ng-required="$ctrl.templatevalidate.templateObj.DECL_PORT.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.DECL_PORT.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.DECL_PORT.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.DECL_PORT.readonly"></li>
+							</ul>
+						</div>
+					</li>
+
+					<li>
+						<lable>
+							合同协议号
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=15 type="text" ng-required="$ctrl.templatevalidate.templateObj.contr_no.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.contr_no.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.contr_no.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.contr_no.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.contr_no.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.contr_no.readonly"></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<lable>
+							申报日期
+						</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=16 type="text" ng-required="$ctrl.templatevalidate.templateObj.d_date.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.d_date.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.d_date.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.d_date.value">
+						<div class="btn-group" uib-dropdown>
+							<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+							<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+								<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.d_date.required"></li>
+								<li class="divider"></li>
+								<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.d_date.readonly"></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<ul>
+				<li>
+					<lable>
+						收发货人
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=17 type="text" ng-required="$ctrl.templatevalidate.templateObj.trade_co.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.trade_co.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trade_co.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.trade_co.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_co.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_co.readonly"></li>
+						</ul>
+					</div>
+					<input my-enter="$ctrl.doSomething()" tabindex=18 type="text" readonly="readonly">
+					<input my-enter="$ctrl.doSomething()" tabindex=19 type="text" style="width:210px;" ng-required="$ctrl.templatevalidate.templateObj.trade_name.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.trade_name.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trade_name.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.trade_name.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.checkboxModel.value1" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.checkboxModel.value2" ng-change="$ctrl.changereadonly()"></li>
+						</ul>
+					</div>
+				</li>
+
+
+
+
+				<li>
+					<!--change -->
+					<lable ng-show="templatett">
+						收货单位
+					</lable>
+					<!--change -->
+					<lable ng-hide="templatett">
+						发货单位
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=20 type="text" ng-required="$ctrl.templatevalidate.templateObj.owner_code.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.owner_code.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.owner_code.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.owner_code.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.owner_code.required" ></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.owner_code.readonly"></li>
+						</ul>
+					</div>
+					<input my-enter="$ctrl.doSomething()" tabindex=21 type="text" readonly="readonly">
+					<input my-enter="$ctrl.doSomething()" tabindex=22 type="text" style="width:210px;" ng-required="$ctrl.templatevalidate.templateObj.owner_name.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.owner_name.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.owner_name.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.owner_name.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.checkboxModel.value1" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.checkboxModel.value2" ng-change="$ctrl.changereadonly()"></li>
+						</ul>
+					</div>
+				</li>
+
+
+				<li>
+					<lable>
+						申报单位
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=23 type="text" ng-required="$ctrl.templatevalidate.templateObj.agent_code.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.agent_code.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.agent_code.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.agent_code.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.agent_code.required" ></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.agent_code.readonly"></li>
+						</ul>
+					</div>
+					<input my-enter="$ctrl.doSomething()" tabindex=24 type="text" readonly="readonly">
+					<input my-enter="$ctrl.doSomething()" tabindex=25 type="text" value="上海铎龄国际货物运输有限公司" style="width:210px;" ng-required="$ctrl.templatevalidate.templateObj.agent_name.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.agent_name.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.agent_name.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.agent_name.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.checkboxModel.value1" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.checkboxModel.value2" ng-change="$ctrl.changereadonly()"></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<lable>
+						运输方式
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=26 type="text" ng-required="$ctrl.templatevalidate.templateObj.traf_mode.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.traf_mode.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.traf_mode.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.traf_mode.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.traf_mode.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.traf_mode.readonly"></li>
+						</ul>
+					</div>
+					运输工具名称
+					<input my-enter="$ctrl.doSomething()" tabindex=27 type="text" ng-required="$ctrl.templatevalidate.templateObj.traf_name.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.traf_name.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.traf_name.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.traf_name.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.traf_name.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.traf_name.readonly"></li>
+						</ul>
+					</div>
+					航次号
+					<input my-enter="$ctrl.doSomething()" tabindex=28 type="text" ng-required="$ctrl.templatevalidate.templateObj.voyage_no.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.voyage_no.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.voyage_no.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.voyage_no.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.voyage_no.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.voyage_no.readonly"></li>
+						</ul>
+					</div>
+				</li>
+
+
+
+
+				<li>
+					<lable>
+						提运单号
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=29 type="text" ng-required="$ctrl.templatevalidate.templateObj.agent_code.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.bill_no.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.bill_no.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.bill_no.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.agent_code.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.bill_no.readonly"></li>
+						</ul>
+					</div>
+					监管方式
+					<input my-enter="$ctrl.doSomething()" tabindex=30 type="text" ng-required="$ctrl.templatevalidate.templateObj.trade_mode.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.trade_mode.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trade_mode.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.trade_mode.value">
+
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_mode.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_mode.readonly"></li>
+						</ul>
+					</div> &nbsp &nbsp征免性质
+					<input my-enter="$ctrl.doSomething()" tabindex="31" type="text" ng-required="$ctrl.templatevalidate.templateObj.cut_mode.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.cut_mode.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.cut_mode.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.cut_mode.value" style="width:100px">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn" uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.cut_mode.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.cut_mode.readonly"></li>
+						</ul>
+					</div>
+					<!--change show-->
+					<span>征税比例<input my-enter="$ctrl.doSomething()" tabindex=32 type="text" style="width:100px" ng-required="$ctrl.templatevalidate.templateObj.pay_way.required" ng-readonly="$ctrl.templatevalidate.templateObj.in_ratio.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.pay_way.Regex"  ng-model="$ctrl.templatevalidate.templateObj.pay_way.value"></span>
+					<!--change show-->
+				</li>
+
+				<li>
+					<lable>
+						许可证号
+					</lable>
+					<input tabindex=33 my-enter="$ctrl.doSomething()" type="text" ng-required="$ctrl.templatevalidate.templateObj.lisence_no.required" ng-readonly="$ctrl.templatevalidate.templateObj.lisence_no.readonly"
+						ng-pattern="$ctrl.templatevalidate.templateObj.lisence_no.Regex" ng-model="$ctrl.templatevalidate.templateObj.lisence_no.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.lisence_no.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.lisence_no.readonly"></li>
+						</ul>
+					</div>
+					<lable style="color:red">
+						贸易国别
+					</lable>
+					<input tabindex=34 type="text" my-enter="$ctrl.doSomething()" ng-required="$ctrl.templatevalidate.templateObj.TRADE_AREA_CODE.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.TRADE_AREA_CODE.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.TRADE_AREA_CODE.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.TRADE_AREA_CODE.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.TRADE_AREA_CODE.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.TRADE_AREA_CODE.readonly"></li>
+						</ul>
+					</div>
+				</li>
+
+
+				<!--change -->
+				<li>
+					<!--<lable>
+						启运国地
+					</lable>-->
+				<lable ng-show="$ctrl.templatett">
+					启运国地
+				</lable>
+				<lable ng-hide="$ctrl.templatett">
+					运抵国地
+				</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=35 type="text" ng-model="$ctrl.templatevalidate.templateObj.trade_country.value" ng-required="$ctrl.templatevalidate.templateObj.trade_country.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.trade_country.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trade_country.Regex">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_country.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_country.readonly"></li>
+						</ul>
+					</div>
+					<span  ng-show="$ctrl.templatett">装货港</span> <span  ng-hide="$ctrl.templatett">指运港</span>
+					<input my-enter="$ctrl.doSomething()" tabindex=36 type="text" style="width:100px" ng-model="$ctrl.templatevalidate.templateObj.distinate_port.value"
+						ng-required="$ctrl.templatevalidate.templateObj.distinate_port.required" ng-readonly="$ctrl.templatevalidate.templateObj.distinate_port.readonly"
+						ng-pattern="$ctrl.templatevalidate.templateObj.distinate_port.Regex">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.distinate_port.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.distinate_port.readonly"></li>
+						</ul>
+					</div>
+					<span  ng-show="$ctrl.templatett">境内目的地</span>		 <span  ng-hide="$ctrl.templatett">境内货源地</span>	
+					<input my-enter="$ctrl.doSomething()" tabindex=37 type="text" style="width:150px;" ng-model="$ctrl.templatevalidate.templateObj.district_code.value"
+						ng-required="$ctrl.templatevalidate.templateObj.district_code.required" ng-readonly="$ctrl.templatevalidate.templateObj.district_code.readonly"
+						ng-pattern="$ctrl.templatevalidate.templateObj.district_code.Regex">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.district_code.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.district_code.readonly"></li>
+						</ul>
+					</div>
+					成交方式
+					<input my-enter="$ctrl.doSomething()" tabindex=38 type="text" ng-model="$ctrl.templatevalidate.templateObj.trans_mode.value" ng-required="$ctrl.templatevalidate.templateObj.trans_mode.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.trans_mode.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trans_mode.Regex">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trans_mode.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trans_mode.readonly"></li>
+						</ul>
+					</div>
+
+				</li>
+				<!--change -->
+
+				<!--<li ng-hide="$ctrl.templatett">
+					<lable>
+						运抵国地
+					</lable>
+					<input my-enter="$ctrl.doSomething()" ng-required="$ctrl.templatevalidate.templateObj.trade_country.required" ng-readonly="$ctrl.templatevalidate.templateObj.trade_country.readonly"
+						ng-pattern="$ctrl.templatevalidate.templateObj.trade_country.Regex" tabindex=35 type="text" ng-model="$ctrl.templatevalidate.templateObj.trade_country.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_country.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trade_country.readonly"></li>
+						</ul>
+					</div>
+					指运港
+					<input my-enter="$ctrl.doSomething()" tabindex=36 type="text" style="width:100px" ng-required="$ctrl.templatevalidate.templateObj.distinate_port.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.distinate_port.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.distinate_port.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.distinate_port.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.distinate_port.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.distinate_port.readonly"></li>
+						</ul>
+					</div>
+					境内货源地
+					<input my-enter="$ctrl.doSomething()" tabindex=37 type="text" style="width:150px;" ng-required="$ctrl.templatevalidate.templateObj.district_code.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.district_code.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.district_code.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.district_code.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.district_code.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.district_code.readonly"></li>
+						</ul>
+					</div>
+					成交方式
+					<input my-enter="$ctrl.doSomething()" tabindex=38 type="text" ng-required="$ctrl.templatevalidate.templateObj.trans_mode.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.trans_mode.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trans_mode.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.trans_mode.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trans_mode.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.trans_mode.readonly"></li>
+						</ul>
+					</div>
+
+				</li>-->
+
+
+
+				<li>
+					<lable>
+						运费/率
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=39 type="text" ng-required="$ctrl.templatevalidate.templateObj.fee_mark.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.fee_mark.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.fee_mark.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.fee_mark.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.fee_mark.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.fee_mark.readonly"></li>
+						</ul>
+					</div>
+					保费/率 <input my-enter="$ctrl.doSomething()" tabindex=40 type="text" ng-required="$ctrl.templatevalidate.templateObj.insur_mark.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.insur_mark.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.insur_mark.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.insur_mark.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.insur_mark.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.insur_mark.readonly"></li>
+						</ul>
+					</div>
+					杂费/率 <input my-enter="$ctrl.doSomething()" tabindex=41 type="text" ng-required="$ctrl.templatevalidate.templateObj.other_mark.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.other_mark.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.other_mark.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.other_mark.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.other_mark.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.other_mark.readonly"></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<lable>
+						件数
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=42 type="text" ng-required="$ctrl.templatevalidate.templateObj.pack_no.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.pack_no.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.pack_no.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.pack_no.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.pack_no.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.pack_no.readonly"></li>
+						</ul>
+					</div>
+					包装种类
+					<input my-enter="$ctrl.doSomething()" tabindex=43 type="text" ng-required="$ctrl.templatevalidate.templateObj.wrap_type.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.wrap_type.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.wrap_type.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.wrap_type.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.wrap_type.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.wrap_type.readonly"></li>
+						</ul>
+					</div>
+					毛重（kg）
+					<input my-enter="$ctrl.doSomething()" tabindex=44 type="text" style="width:100px" ng-required="$ctrl.templatevalidate.templateObj.gross_wt.required"
+						ng-readonly="$ctrl.templatevalidate.templateObj.gross_wt.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.gross_wt.Regex"
+						ng-model="$ctrl.templatevalidate.templateObj.gross_wt.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.gross_wt.required" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.gross_wt.readonly"></li>
+						</ul>
+					</div>
+					净重（kg）
+					<input my-enter="$ctrl.doSomething()" tabindex=45 type="text" style="width:100px" ng-required="$ctrl.templatevalidate.templateObj.net_wt.required"
+						ng-model="$ctrl.templatevalidate.templateObj.net_wt.value" ng-readonly="$ctrl.templatevalidate.templateObj.net_wt.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.net_wt.Regex">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.net_wt.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.net_wt.readonly"></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<lable>
+						集装箱数
+
+					</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=46 type="text" ng-model="$ctrl.templatevalidate.templateObj._jzxs.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.checkboxModel.value1" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.checkboxModel.value2" ng-change="$ctrl.changereadonly()"></li>
+						</ul>
+					</div>
+					随附单证
+					<input my-enter="$ctrl.doSomething()" tabindex=47 type="text" ng-model="$ctrl.templatevalidate.templateObj._sfdz.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.checkboxModel.value1" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.checkboxModel.value2" ng-change="$ctrl.changereadonly()"></li>
+						</ul>
+					</div>
+
+					<!--change-->
+					<span ng-hide="$ctrl.twosingle"><input my-enter="$ctrl.doSomething()" tabindex=48 type="checkbox"><span class="check-red">两单一审</span></span>
+					<!--change-->
+					<input my-enter="$ctrl.doSomething()" tabindex=49 type="checkbox"><span class="check-red">担保验放</span>
+					<!--<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.checkboxModel.value1" ng-change="$ctrl.changrequired()"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.checkboxModel.value2" ng-change="$ctrl.changereadonly()"></li>
+						</ul>
+					</div>-->
+
+					<input my-enter="$ctrl.doSomething()" tabindex=50 type="checkbox"><span class="check-red">电子手册报关申报</span>
+				</li>
+				<li>
+					<lable>
+						备注
+					</lable>
+					<input required my-enter="$ctrl.doSomething()" ng-required="$ctrl.templatevalidate.templateObj.note_s.required" ng-readonly="$ctrl.templatevalidate.templateObj.note_s.readonly"
+						ng-pattern="$ctrl.templatevalidate.templateObj.note_s.Regex" tabindex=51 type="text" ng-model="$ctrl.templatevalidate.templateObj.note_s.value">
+					<div class="btn-group" uib-dropdown>
+						<button type="button" class="btn  " uib-dropdown-toggle>
+                        <span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+						</button>
+						<ul ng-click="$ctrl.stopprop()" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+							<li class="choice" role="menuitem">required: <input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.note_s.required"></li>
+							<li class="divider"></li>
+							<li class="choice choicebotm" role="menuitem">readonly：<input type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.note_s.readonly"></li>
+						</ul>
+					</div>
+					<select name="" id="" style="width:50px;"></select> 清单类型 <select name="" id="" style="width:50px;"></select>
+				</li>
+				<li>
+					<lable>
+						<apan class="check-red">票据类型 </apan>
+					</lable>
+					<select name="" id="" style="width:50px;"></select>
+					<lable>
+						<apan class="check-red">税费</apan>
+					</lable><input tabindex=52 type="text" ng-required="$ctrl.templatevalidate.templateObj.note_s.required" ng-readonly="$ctrl.templatevalidate.templateObj.Tax_Amount.readonly"
+						ng-pattern="$ctrl.templatevalidate.templateObj.Tax_Amount.Regex" tabindex=51 type="text" ng-model="$ctrl.templatevalidate.templateObj.Tax_Amount.value">
+					<input type="checkbox">
+					<lable><span class="check-red">税单无纸化</span></lable>
+				</li>
+				<li>
+
+					<input my-enter="$ctrl.doSomething()" tabindex=53 type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.promiseflag1.value"> <span class="check-red">特殊关系确认</span>
+					<input my-enter="$ctrl.doSomething()" tabindex=54 type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.promiseflag2.value"> <span class="check-red">价格影响确认</span>
+					<input my-enter="$ctrl.doSomething()" tabindex=55 type="checkbox" ng-model="$ctrl.templatevalidate.templateObj.promiseflag3.value"> <span class="check-red">支付特许权使用费确认</span>
+				</li>
+			</ul>
+
+			<div>
+				<div style=" top: 0px; left: 0px; padding-left:40px">
+					<input type="button" name="Submit3" value="添加" ng-click="$ctrl.add()"/>
+					<!--<input type="button" name="submit1" value="上移" ng-click="$ctrl.moveup()">
+					<input type="button" name="submit2" value="下移" ng-click="$ctrl.moveDown()">
+					<input type="button" name="Submit3" value="添加" ng-click="$ctrl.add()"/>
+					<input type="button" name="Submit4" value="删除选择" ng-click="$ctrl.deletesel()" />-->
+				</div>
+				<div style="padding-left:40px;color:green; font-weight:bold">商品管理</div>
+				<div style="width:700px; margin-left:40px;overflow: auto;display:inline-block; height:100px; ;border:1px solid #CCCCCC">
+
+					<table class="table-hover mytable-tr" style="width:1500px;" border="1px" cellpadding="1" cellspacing="1" bordercolor="#CCCCCC">
+						<tr>
+							<th>
+							</th>
+							<th>项号</th>
+							<th>商品编号</th>
+							<th>附加编号</th>
+							<th>商品名称</th>
+							<th>规格型号</th>
+							<th>申报数量</th>
+							<th>申报单位</th>
+							<th>单价</th>
+							<th>成交总价</th>
+							<th>币制</th>
+							<th>原产/最终目的国</th>
+							<th>法定数量</th>
+							<th>法定单位</th>
+							<th>第二数量</th>
+							<th>第二单位</th>
+							<th>版本号</th>
+							<th>货号</th>
+							<th>用途</th>
+							<th>增免方式</th>
+						</tr>
+
+						<tr ng-repeat="item in $ctrl.orderedformlist | orderBy:'g_no' track by $index" id="{{$item.id}}" ng-class="table-hover">
+							<td><input type="checkbox" ng-model="item.flag" name="select" ng-click="$ctrl.binding(item)" /></td>
+							<td>{{$index}}</td>
+							<td>{{item.code_t}}</td>
+							<td>{{item.code_s}}</td>
+							<td>{{item.g_name}}</td>
+							<td class="mytable-td">
+								<div class="mytable-td-shop">{{item.g_model}}</div>
+							</td>
+							<td>{{item.qty_1}}</td>
+							<td>{{item.g_unit}}</td>
+							<td>{{item.decl_price}}</td>
+							<td>{{item.trade_total}}</td>
+							<td>{{item.trade_curr}}</td>
+							<td>{{item.origin_country}}/{{item.DESTINATION_COUNTRY}}</td>
+							<!--<td>{{item.contr_item}}</td>-->
+							<td>{{item.qty_conv}}</td>
+							<td>{{item.unit_1}}</td>
+							<td>{{item.qty_2}}</td>
+							<td>{{item.unit_2}}</td>
+							<td>{{item.ver_no}}</td>
+							<td>{{item.prdt_no}}</td>
+							<!--<td>{{item.work_usd}}</td>-->
+							<!--<td>{{item.create_date}}</td>-->
+							<td>{{item.use_to}}</td>
+							<td>{{item.duty_mode}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div style="text-align:center;">
+				<span class="check-green">总净重：</span><span class="check-red">0</span>,
+				<span class="check-green">总数量:</span><span class="check-red">0</span>,
+				<span class="check-green"> 美元:</span><span class="check-red">[ ]</span>,
+			</div>
+
+			<div>
+				<ul>
+					<li>
+						<lable>新贸序号</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=56 type="text" ng-required="$ctrl.templatevalidate.templateObj.g_no.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.g_noInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.g_noInput.Regex"
+							ng-model="$ctrl.emplatevalidate.templateObj.g_noInput.value">
+						<lable>商品编号</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=57 type="text" ng-required="$ctrl.templatevalidate.templateObj.code_tInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.code_tInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.code_tInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.code_tInput.value">
+						<lable>附加编号</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=58 type="text" ng-required="$ctrl.templatevalidate.templateObj.code_sInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.code_sInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.code_sInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.code_sInput.value">
+					</li>
+					<li>
+						<lable>商品名称</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=59 type="text" ng-required="$ctrl.templatevalidate.templateObj.g_nameInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.g_nameInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.g_nameInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.g_nameInput.value">
+						<lable>规格型号</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=60 type="text" ng-required="$ctrl.templatevalidate.templateObj.g_modelInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.g_modelInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.g_modelInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.g_modelInput.value">
+					</li>
+					<li>
+						<lable>申报数量</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=61 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.qty_1Input.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.qty_1Input.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.qty_1Input.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.qty_1Input.value"> 申报单位
+						<input my-enter="$ctrl.doSomething()" tabindex=62 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.g_unitInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.g_unitInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.g_unitInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.g_unitInput.value"> 单价 &nbsp &nbsp
+						<input my-enter="$ctrl.doSomething()" tabindex=63 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.decl_priceInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.decl_priceInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.decl_priceInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.decl_priceInput.value"> 总价 &nbsp
+						<input my-enter="$ctrl.doSomething()" tabindex=64 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.trade_totalInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.trade_totalInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trade_totalInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.trade_totalInput.value"> 币制 &nbsp &nbsp &nbsp
+						<input my-enter="$ctrl.doSomething()" tabindex=65 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.trade_currInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.trade_currInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.trade_currInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.trade_currInput.value">
+					</li>
+					<li>
+						<lable>法定数量</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=66 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.qty_convInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.qty_convInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.qty_convInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.qty_convInput.value"> 法定单位
+						<input my-enter="$ctrl.doSomething()" tabindex=67 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.unit_1Input.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.unit_1Input.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.unit_1Input.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.unit_1Input.value"> 版本号
+						<input my-enter="$ctrl.doSomething()" tabindex=68 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.ver_noInput.required"
+						    ng-pattern="$ctrl.templatevalidate.templateObj.ver_noInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.ver_noInput.value"> 货号
+						<input my-enter="$ctrl.doSomething()" tabindex=69 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.prdt_noInput.required"
+							 ng-pattern="$ctrl.templatevalidate.templateObj.prdt_noInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.prdt_noInput.value"> 征免方式
+						<input my-enter="$ctrl.doSomething()" tabindex=70 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.duty_modeInput.required"
+							 ng-pattern="$ctrl.templatevalidate.templateObj.duty_modeInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.duty_modeInput.value">
+					</li>
+
+
+					<!--change  -->
+					<!--<li >
+						<lable>第二数量</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=71 type="text" style="width:100px;"> 第二单位
+						<input my-enter="$ctrl.doSomething()" tabindex=72 type="text" style="width:100px;"> 原产国
+						<input my-enter="$ctrl.doSomething()" tabindex=73 type="text" style="width:100px;" ng-model="$ctrl.selected.DESTINATION_COUNTRY">
+						<span class="check-red">目的国</span>
+						<input my-enter="$ctrl.doSomething()" tabindex=74 type="text" style="width:100px;" ng-model="$ctrl.selected.origin_country">
+					</li>-->
+					<!--change-->
+					<li>
+						<lable>第二数量</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=71 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.qty_2Input.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.qty_2Input.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.qty_2Input.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.qty_2Input.value"> 第二单位
+						<input my-enter="$ctrl.doSomething()" tabindex=72 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.unit_2Input.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.unit_2Input.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.unit_2Input.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.unit_2Input.value"> 目的国
+						<input my-enter="$ctrl.doSomething()" tabindex=73 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.DESTINATION_COUNTRYInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.DESTINATION_COUNTRYInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.DESTINATION_COUNTRYInput.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.DESTINATION_COUNTRYInput.value">
+						<span class="check-red">原产国</span>
+						<input my-enter="$ctrl.doSomething()" tabindex=74 type="text" style="width:100px;" ng-required="$ctrl.templatevalidate.templateObj.origin_countryInput.required"
+							ng-readonly="$ctrl.templatevalidate.templateObj.origin_countryInput.readonly" ng-pattern="$ctrl.templatevalidate.templateObj.origin_country.Regex"
+							ng-model="$ctrl.templatevalidate.templateObj.origin_countryInput.value">
+						<!--<span ng-hide="$ctrl.templatett">工缴费<input my-enter="$ctrl.doSomething()" tabindex=75 type="text" style="width:100px;" ></span>-->
+					</li>
+					<li>
+						<lable>净重</lable>
+						<input my-enter="$ctrl.doSomething()" tabindex=76 type="text" style="width:700px;">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="form-goodscustomer-right clearfix" style="float:left;padding-left:10px;">
+		<div class="clearfix">
+			<ul class="form-goodscustomer-right-p fl">
+				<li ng-click="$ctrl.insert_row()"><input type="button" value="+"></li>
+				<li><input type="button" value="_"></li>
+				<li><input type="button" value="上移"></li>
+				<li><input type="button" value="下移"></li>
+			</ul>
+			<div style="color:green; font-weight:bold ">集装箱列表</div>
+			<div style="width:200px;overflow: auto;display:inline-block; height:110px; ;border:1px solid #CCCCCC">
+
+				<table style="width:250px;" border="1px" cellpadding="1" cellspacing="1" bordercolor="#CCCCCC">
+					<tr>
+						<th>
+						</th>
+						<th>项号</th>
+						<th>集装箱号</th>
+						<th>规格</th>
+						<th>自重</th>
+					</tr>
+
+					<tr>
+						<td><input type="checkbox" name="{{item.id}}" value="checkbox" /></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+
+
+		</div>
+		<ul class="form-goodscustomer-right" style="margin:30px 0">
+			<li>
+				<lable>集装箱号</lable>
+				<input my-enter="$ctrl.doSomething()" tabindex=80 type="text">
+			</li>
+			<li>
+				<lable>集装箱规格</lable>
+				<input my-enter="$ctrl.doSomething()" tabindex=81 type="text">
+			</li>
+			<li>
+				<lable>集装箱自重</lable>
+				<input my-enter="$ctrl.doSomething()" tabindex=82 type="text">
+			</li>
+		</ul>
+		<div class="clearfix">
+			<ul class="form-goodscustomer-right-p fl">
+				<li><input type="button" value="+"></li>
+				<li><input type="button" value="_"></li>
+				<li><input type="button" value="上移"></li>
+				<li><input type="button" value="下移"></li>
+			</ul>
+			<div style="color:green; font-weight:bold ">随附单证列表</div>
+			<div style="width:200px;overflow: auto;display:inline-block; height:110px; ;border:1px solid #CCCCCC">
+
+				<table style="width:250px;" border="1px" cellpadding="1" cellspacing="1" bordercolor="#CCCCCC">
+					<tr>
+						<th>
+						</th>
+						<th>项号</th>
+						<th>随附单证代码</th>
+						<th>附加单证编号</th>
+					</tr>
+
+					<tr>
+						<td><input type="checkbox" name="" value="checkbox" /></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<ul class="form-goodscustomer-right" style="margin:30px 0">
+			<li>
+				<lable>随附单证</lable>
+				<input my-enter="$ctrl.doSomething()" tabindex=83 type="text">
+			</li>
+			<li>
+				<lable>随附单编号</lable>
+				<input my-enter="$ctrl.doSomething()" tabindex=84 type="text">
+			</li>
+			<li>
+				<lable style="width:90px;"><button>随附单据</button></lable>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<lable>关联报关单</lable>
+				<input my-enter="$ctrl.doSomething()" ng-model="$ctrl.templatevalidate.templateObj.RaDeclNo.value" tabindex=85 type="text">
+			</li>
+			<li>
+				<li>
+					<lable>关联备案号</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=86 type="text">
+				</li>
+				<li>
+					<lable>监管仓号</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=87 type="text">
+				</li>
+				<li>
+					<lable>货场代码</lable>
+					<input my-enter="$ctrl.doSomething()" tabindex=88 type="text">
+		</ul>
+	</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					请输入模板名称
+				</h4>
+			</div>
+			<div class="modal-body" id="modalbody">
+				<input type="text" ng-model="$ctrl.mubanname">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.okbtn()" id="okbtn">
+					确定
+				</button>
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>

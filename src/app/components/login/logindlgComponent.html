@@ -1,0 +1,40 @@
+<!--<div class="modal-header">
+    <h3 class="modal-title"style="text-align:center;color:#5aadbb;size:20px;">{{$ctrl.text}}</h3>
+</div>-->
+<form ng-submit="$ctrl.ok()" class="register">
+    <div class="modal-body">
+        	<uib-tabset>
+				<uib-tab index="0" heading="账号登录">
+					<div class="row user-name" style="padding-top:20px">
+                        <div class="col-md-4">
+                            用户名:</div>
+                        <div class="col-md-8"><input class="user-name-one" ng-model="$ctrl.newModel.userid" placeholder="用户名" ng-change="$ctrl.replay()"/></div>
+                    </div>
+                    <div class="row user-password">
+                        <div class="col-md-4">&nbsp密码:</div>
+                        <div class="col-md-8">
+                            <input type="password" class="user-name-one" ng-model="$ctrl.newModel.psword" placeholder="密码"ng-change="$ctrl.replay()" />
+                        </div>
+                    </div>
+                         <div>
+              <script type="text/ng-template" id="alert.html">
+                <div ng-transclude></div>
+              </script>
+              <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.msg}}</div>
+                </div>
+                <div class="modal-footer" style="margin-top:20px">
+                    <input class="btn btn-primary" type="submit" id="submit" value="登录" />
+                    <button class="btn btn-warning" type="button" ng-click="$ctrl.close()">取消</button>
+                </div>
+				</uib-tab>
+                <uib-tab index="2" heading="微信登录" ng-click="$ctrl.loginweixin()">
+					        <div style="width:100%" id="weixinimg">
+                                <img style="width:150px; height:150px；margin:0 auto; padding-top:20px" src={{$ctrl.img}} alt="">
+                            </div>
+                     <div class="modal-footer" style="margin-top:20px">
+                    <button class="btn btn-warning" type="button" ng-click="$ctrl.close()">取消</button>
+                </div>
+				</uib-tab>
+			</uib-tabset>
+    </div>
+</form>

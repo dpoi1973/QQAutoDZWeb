@@ -1,0 +1,82 @@
+<div class="component">
+  <div>
+    <div class="public-button" style="height:33px">
+					<ui-select ng-model="$ctrl.selectcompany" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+							<ui-select-match  placeholder="请输入客户名称...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+							<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.id as item in $ctrl.selsource1 track by $index " style="width:256px">
+							<div ng-bind-html="item.custname | highlight: $select.search"></div>
+							<!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+							</ui-select-choices>
+					</ui-select>
+			<!--<input style="margin-left:50px; margin-top:18px" type="checkbox" id="searchproductid" ng-click="$ctrl.checkproductid()"> ClassifiedProductid-->
+      <div style="float:right">
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)" value="查询">
+						<div class="btn-group" uib-dropdown is-open="status.isopen">
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    相关操作<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                 <li role="menuitem" ng-click="$ctrl.Daoru()"><a href="#">添加商品信息</a></li>
+								 <li role="menuitem" ng-click="$ctrl.openupload()"><a href="#">添加要素</a></li>
+            </ul>
+      </div>
+      <input type="submit" class="btn btn-default btn-sm" ng-click="$ctrl.delete()" value="删除商品信息">
+      <!--<button type="button" class="btn btn-default btn-sm" ng-click="isCollapsed = !isCollapsed" style="background-color:#48D2CC;color:#fff">open</button>-->
+     </div>
+    <div style="float:right; " >
+			<input type="text" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder=""
+				aria-describedby="basic-addon2">
+		</div>
+    </div>
+    <hr>
+    		<!--弹出层-->
+<div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示信息
+				</h4>
+			</div>
+			<div class="modal-body" id="modalbody">
+				{{$ctrl.text}}
+        <input type="text" id="modalbodyinput" ng-model="$ctrl.revisedCunit" style="margin:5px auto">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.okbtn()" id="okbtn" style="display:none">
+					确定
+				</button>
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+          <div id="overlay">
+				<ul id="dlgcontent">
+					<li>
+					<ui-select ng-model="$ctrl.companyid" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+							<ui-select-match  placeholder="请输入客户名称...">{{$select.selected.custname || $select.selected}}</ui-select-match>
+							<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item as item in $ctrl.selsource1 track by $index " style="width:256px">
+							<div ng-bind-html="item.custname | highlight: $select.search"></div>
+							<!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+							</ui-select-choices>
+					</ui-select>
+					</li>
+					<li>
+						<input type="file" style="margin:0 auto" file-model="myFile" id="myFile">
+					</li>
+					<div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" ng-click="$ctrl.savetest()" data-target="#myModal" value='确定' /><input type='button' ng-click="$ctrl.cancle()" value='取消'/></div>
+				</ul>
+			</div>
+      <div uib-collapse="!isCollapsed" class="public-showhide">
+          <div>
+            <lable>规格</lable> <input ng-model="$ctrl.searchCondition.condition.createdate.startdate" type="text"> <lable>内部编号</lable> <input ng-model="$ctrl.searchCondition.condition.createdate.enddate" type="text"> <lable>状态</lable> <input type="text"> 
+          </div>
+      </div>   
+    <div ui-grid="$ctrl.gridOptions" ui-grid-resize-columns ui-grid-pagination ui-grid-selection ui-grid-exporter id="grid" class="grid" style="height: 500px"></div>
+  </div>
+</div>

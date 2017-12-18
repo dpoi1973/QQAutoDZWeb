@@ -1,0 +1,58 @@
+<div class="component">
+	<!--写入代码-->
+	<div>
+		<div class="public-button">
+			<div style="float:right">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)">查询</button>
+            								   <!-- Single button -->
+         <div class="btn-group" uib-dropdown is-open="status.isopen">
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    相关操作<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                 <li role="menuitem" data-target="#myModaltwo" ng-click="$ctrl.showoriginJson()"><a href="#">修改originJson</a></li>
+            </ul>
+          </div>
+         <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.delete()">删除</button>
+         <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.addnew()">添加</button>
+		   </div>
+		    <div style="float: right;" >
+			<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder="查询"
+				aria-describedby="basic-addon2">
+                <!--$ctrl.searchCondition.condition.description-->
+		</div>
+		</div>
+		<br>
+		<br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-resize-columns ui-grid-pinning ui-grid-edit ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>
+
+<!--修改originJson-->
+<div class="modal fade" id="myModaltwo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" ng-click="$ctrl.closetemp()" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							详细数据
+						</h4>
+					</div>
+					<div class="modal-body" id="modalbodytemp">
+						<ul>
+							<li ng-repeat="(key, value) in $ctrl.testObj">
+                                <span>{{key}}:</span>
+                                <input style="width:300px" type="text" ng-model="$ctrl.testObj[key]">
+			                </li>
+		               </ul>
+                      </div>
+					<div class="modal-footer">
+                        <button type="button" ng-click="$ctrl.savetest()" class="btn btn-default" data-dismiss="modal">保存
+						</button>
+						<button type="button" ng-click="$ctrl.closetemp()" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+					</div>
+            </div>
+</div>

@@ -1,0 +1,121 @@
+<div id="sjBox">
+    <div id="middle">
+        <div>
+            <span><b>主要单证信息</b><span class="line" style="width:92%;"></span></span>
+            <div class="section">
+                <div><label for="">报检申请号</label><input type="text" ng-model="$ctrl.detailInfoData.Ent_Decl_No" ng-style="$ctrl.detailInfoData.Ent_Decl_No?$ctrl.color:{}"></div>
+                <div><label for="">报检号</label><input type="text" ng-model="$ctrl.detailInfoData.Decl_No" ng-style="$ctrl.detailInfoData.Decl_No?$ctrl.color:{}"></div>
+                <div><label for="">报检类别</label><input type="text" ng-model="$ctrl.detailInfoData.Decl_Type_Name" ng-style="$ctrl.detailInfoData.Decl_Type_Name?$ctrl.color:{}"></div>
+                <div><label for="">报检员</label><input type="text" style="width:30%" ng-model="$ctrl.detailInfoData.Decl_Persn_Cert_No"
+                        ng-style="$ctrl.detailInfoData.Decl_Persn_Cert_No?$ctrl.color:{}"> <input type="text" style="width:30%" ng-model="$ctrl.detailInfoData.Decl_Person_Name"
+                        ng-style="$ctrl.detailInfoData.Decl_Person_Name?$ctrl.color:{}"></div>
+                <div><label for="">报检单位</label><input type="text" ng-model="$ctrl.detailInfoData.Decl_Reg_No" ng-style="$ctrl.detailInfoData.Decl_Reg_No?$ctrl.color:{}"></div>
+                <div><label for="">报检单位名称</label><input type="text" ng-model="$ctrl.detailInfoData.Decl_Reg_Name" ng-style="$ctrl.detailInfoData.Decl_Reg_Name?$ctrl.color:{}"></div>
+                <div><label for="">收货人注册号</label><input type="text" ng-model="$ctrl.detailInfoData.Consignee_Code" ng-style="$ctrl.detailInfoData.Consignee_Code?$ctrl.color:{}"></div>
+                <div><label for="">收货人名称</label><input type="text" ng-model="$ctrl.detailInfoData.Consignee_Cname" ng-style="$ctrl.detailInfoData.Consignee_Cname?$ctrl.color:{}"></div>
+                <div><label for="">发货人名称(英文)</label><input type="text" ng-model="$ctrl.detailInfoData.Consignee_Ename" ng-style="$ctrl.detailInfoData.Consignee_Ename?$ctrl.color:{}"></div>
+                <div><label for="">发货地址</label><input type="text" ng-model="$ctrl.detailInfoData.Consignor_Addr" ng-style="$ctrl.detailInfoData.Consignor_Addr?$ctrl.color:{}"></div>
+                <div style="width:41%; text-align:left; padding-left:48px"><label for="">企业资质</label><input type="text" style="width:100px"> <input type="text" style="width:100px"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <span><b>货物信息</b><span ng-class="$ctrl.pointDirection" id="point" ng-click="$ctrl.showOrHide()"></span>
+            <span class="line"></span>记录数:<span id="current-num">{{$ctrl.currentNum}}</span> / <span style="display:inline-block; width:8px;">{{$ctrl.totalNum}}</span>&#x3000;&#x3000;<button style="padding:1px 2px;" ng-disabled="$ctrl.leftBoolean" ng-style="$ctrl.useStyleLeft" ng-click="$ctrl.showFirst()"><<</button> <button ng-disabled="$ctrl.leftBoolean" ng-click="$ctrl.previous()" ng-style="$ctrl.useStyleLeft"><</button> <button ng-click="$ctrl.next()" ng-disabled="$ctrl.rightBoolean" ng-style="$ctrl.useStyleRight">></button> <button style="padding:1px 2px;" ng-disabled="$ctrl.rightBoolean" ng-style="$ctrl.useStyleRight" ng-click="$ctrl.showFinal()">>></button> <button>添加</button> <button>插入</button> <button>复制</button> <button>删除</button> <button>货箱对应</button></span>
+            <div class="section">
+                <div><label for="">HS编码</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Prod_Hs_Code?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.Prod_Hs_Code"></div>
+                <div><label for="">货物名称</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Decl_Goods_Cname?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.Decl_Goods_Cname"></div>
+                <div><label for="">CIQ编码</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Ciq_Code?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.Ciq_Code"></div>
+                <div><label for="">货物属性</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Goods_Attr_Name?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.Goods_Attr_Name"></div>
+                <div><label for="">数量</label><input type="text" style="width:83px" ng-model="$ctrl.currentGoodsDetail.Qty" ng-style="$ctrl.currentGoodsDetail.Qty?$ctrl.color:{}">&nbsp;<input type="text" style="width:83px;"
+                        ng-model="$ctrl.currentGoodsDetail.shuliang" ng-style="$ctrl.currentGoodsDetail.Qty?$ctrl.color:{}"></div>
+                <div><label for="">重量</label><input type="text" style="width:83px" ng-style="$ctrl.currentGoodsDetail.Weight?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.Weight">&nbsp;<input type="text"
+                        ng-model="$ctrl.currentGoodsDetail.zhongliang" style="width:83px" ng-style="$ctrl.currentGoodsDetail.Weight?$ctrl.color:{}" disabled></div>
+                <div><label for="">单价</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Price_Per_Unit" ng-style="$ctrl.currentGoodsDetail.Price_Per_Unit?$ctrl.color:{}"></div>
+                <div><label for="">货物总值</label><input type="text" style="width:83px" ng-style="$ctrl.currentGoodsDetail.Goods_Total_Val?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.Goods_Total_Val">&nbsp;<input type="text"
+                        ng-model="$ctrl.currentGoodsDetail.huowuzongzhi" style="width:83px" ng-style="$ctrl.currentGoodsDetail.Goods_Total_Val?$ctrl.color:{}" disabled></div>
+                <div><label for="">包装件数</label><input type="text" ng-style="1==2?$ctrl.color:'{}'"></div>
+                <div><label for="">包装种类</label><input type="text" ng-style="1==2?$ctrl.color:{}"></div>
+                <div><label for="">用途</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Purpose_Name?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.yongtu"></div>
+                <div><label for="">标准量</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Std_Weight?$ctrl.color:{}" style="width:83px" ng-model="$ctrl.currentGoodsDetail.Std_Weight">&nbsp;<input type="text" ng-style="$ctrl.currentGoodsDetail.Std_Weight?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.biaozhunliang" style="width:83px"
+                        ></div>
+                <div><label for="">原产国</label><input type="text" ng-style="$ctrl.currentGoodsDetail.Ori_Ctry_Name?$ctrl.color:{}" ng-model="$ctrl.currentGoodsDetail.yuanchanguo"></div>
+                <div><label for="">原产地区</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Orig_Place_Name" ng-style="$ctrl.currentGoodsDetail.Orig_Place_Name?$ctrl.color:{}"></div>
+                <div><label for="">生产批号</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Prod_Batch_No" ng-style="$ctrl.currentGoodsDetail.Prod_Batch_No?$ctrl.color:{}"></div>
+                <div><label for="" style="color:#f0f5fa">a</label><button>&#x3000;危险货物信息&#x3000;</button>&#x3000;<button>&#x3000;备用信息&#x3000;</button></div>
+                <section id="show-hide" ng-style="$ctrl.display">
+                    <div style="height:25px"><label for="" style="display:inline-block; height:30px; position:relative; top:-8px">境外生产<br>企业名称</label>
+                        <input type="text" style="vertical-align:top"></div>
+                    <div><label for="">货物规格</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Goods_Spec" ng-style="$ctrl.currentGoodsDetail.Goods_Spec?$ctrl.color:{}"></div>
+                    <div><label for="">货物型号</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Goods_Model" ng-style="$ctrl.currentGoodsDetail.Goods_Model?$ctrl.color:{}"></div>
+                    <div><label for="">货物品牌</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Goods_Brand" ng-style="$ctrl.currentGoodsDetail.Goods_Brand?$ctrl.color:{}"></div>
+                    <div><label for="">生产日期</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Produce_Date" ng-style="$ctrl.currentGoodsDetail.Produce_Date?$ctrl.color:{}"></div>
+                    <div><label for="">产品有效期</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Prod_Valid_Dt" ng-style="$ctrl.currentGoodsDetail.Prod_Valid_Dt?$ctrl.color:{}"></div>
+                    <div><label for="">产品保质期</label><input type="text"></div>
+                    <div><label for="">成分/原料</label><input type="text" ng-model="$ctrl.currentGoodsDetail.Stuff" ng-style="$ctrl.currentGoodsDetail.Stuff?$ctrl.color:{}"></div>
+                </section>
+                <div style="width:41%; padding-right:1px;"><label for="">产品资质</label><input type="text">&nbsp;<input type="text"></div>
+                <div style="width:11%;"><label for="">核销序号</label><input type="text" style="width:60px"></div>
+                <div style="width:13%;"><label for="">核销数量</label><input type="text" style="width:60px" ng-model="$ctrl.currentGoodsDetail.Qty" ng-style="$ctrl.currentGoodsDetail.Qty?$ctrl.color:{}"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <span><b>运输及合同信息</b><span class="line" style="width:91%;"></span></span>
+            <div class="section">
+                <div><label for="">运输方式</label><input type="text" ng-style="$ctrl.detailInfoData.Trans_Mode_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Trans_Mode_Name"></div>
+                <div><label for="">运输工具</label><input type="text"></div>
+                <div><label for="">号码</label><input type="text"></div>
+                <div><label for="">合同号</label><input type="text" ng-style="$ctrl.detailInfoData.Contract_No?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Contract_No"></div>
+                <div><label for="">提货单号</label><input type="text"></div>
+                <div><label for="">提/运单号</label><input type="text" ng-style="$ctrl.detailInfoData.Bill_Lad_No?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Bill_Lad_No"></div>
+                <div><label for="">分运单号</label><input type="text"></div>
+                <div><label for="">标记号码</label><input type="text" ng-style="$ctrl.detailInfoData.Mark_No?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Mark_No"></div>
+                <div><label for="">贸易方式</label><input type="text" ng-style="$ctrl.detailInfoData.Trade_Mode_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.maoyifangshi"></div>
+                <div><label for="">贸易国别</label><input type="text" ng-style="$ctrl.detailInfoData.Trade_Country_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.maoyiguobie"></div>
+                <div><label for="">到货日期</label><input type="text"></div>
+                <div><label for="">卸毕日期</label><input type="text"></div>
+                <div style="width:50%"><label for="">所需单证</label><input type="text" style="width:445px"></div>
+                <div style="width:50%"><label for="">特殊要求</label><input type="text" style="width:445px"></div>
+                <div style="width:50%"><label for="">随附单据</label><input type="text" style="width:445px" ng-style="$ctrl.detailInfoData.Atta_Collect_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Atta_Collect_Name"></div>
+                <div style="width:13%"><input type="checkbox">原箱装载标识</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <span><b>集装箱信息</b><span class="line" style="width:93%;"></span></span>
+            <div class="section">
+                <div><label for="">集装箱规格</label><input type="text"></div>
+                <div><label for="">集装箱数量</label><input type="text"></div>
+                <div><label for="">集装箱号码</label><input type="text"></div>
+                <div style="width:8%"><input type="checkbox">拼箱标记</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <span><b>其它单证信息</b><span class="line" style="width:92%;"></span></span>
+            <div class="section">
+                <div><label for="">报检地</label><input type="text" ng-style="$ctrl.detailInfoData.Insp_Org_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.baojiandi"></div>
+                <div><label for="">口岸机构</label><input type="text" ng-style="$ctrl.detailInfoData.Org_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.kouanjigou"></div>
+                <div><label for="">目的机构</label><input type="text" ng-style="$ctrl.detailInfoData.Purp_Org_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.mudijigou"></div>
+                <div><label for="">领证地</label><input type="text" ng-style="$ctrl.detailInfoData.Vsa_Org_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.lingzhengdi"></div>
+                <div><label for="">报检日期</label><input type="text" ng-style="$ctrl.detailInfoData.Gds_Arvl_Date?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Gds_Arvl_Date"></div>
+                <div><label for="">启运国家</label><input type="text" ng-style="$ctrl.detailInfoData.Desp_Ctry_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.qiyunguojia"></div>
+                <div><label for="">启运口岸</label><input type="text" ng-style="$ctrl.detailInfoData.Desp_Port_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.qiyunkouan"></div>
+                <div><label for="">启运日期</label><input type="text" ng-style="$ctrl.detailInfoData.Desp_Date?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Desp_Date"></div>
+                <div><label for="">经停口岸</label><input type="text" ng-model="$ctrl.detailInfoData.Port_Stop_Name" ng-style="$ctrl.detailInfoData.Port_Stop_Name?$ctrl.color:{}"></div>
+                <div><label for="">入境口岸</label><input type="text" ng-style="$ctrl.detailInfoData.Enty_Port_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Enty_Port_Name"></div>
+                <div><label for="">入境目的地</label><input type="text" ng-style="$ctrl.detailInfoData.Dest_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.rujingmudidi"></div>
+                <div><label for="">存放地点</label><input type="text" ng-style="$ctrl.detailInfoData.Goods_Place?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.Goods_Place"></div>
+                <div><label for="">报关海关</label><input type="text" ng-style="$ctrl.detailInfoData.Decl_Custm_Name?$ctrl.color:{}" ng-model="$ctrl.detailInfoData.baoguanhaiguan"></div>
+                <div><label for="">特种业务标识</label><input type="text" ng-model="$ctrl.detailInfoData.Spec_Decl_Flag" ng-style="$ctrl.detailInfoData.Spec_Decl_Spec_Decl_Flag?$ctrl.color:{}"></div>
+                <div><label for="">关联理由</label><input type="text" ng-model="$ctrl.detailInfoData.Correlation_Reason_Content" ng-style="$ctrl.detailInfoData.Correlation_Reason_Content?$ctrl.color:{}"></div>
+                <div><label for="">海关注册号</label><input type="text" ng-model="$ctrl.detailInfoData.Custm_Reg_No" ng-style="$ctrl.detailInfoData.Custm_Reg_No?$ctrl.color:{}"></div>
+                <div><label for="">索赔截止日期</label><input type="text" ng-model="$ctrl.detailInfoData.Counter_Claim" ng-style="$ctrl.detailInfoData.Counter_Claim?$ctrl.color:{}"></div>
+                <div style="width:35%"><label for="">特殊通关模式</label><input type="text" style="width:280px;"></div>
+                <div style="width:15%;text-align:left;"><label for=""></label><input type="submit" value="使用人"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

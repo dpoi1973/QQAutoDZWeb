@@ -1,0 +1,275 @@
+<div class="component">
+	<div>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal"  ng-click="$ctrl.savedetailInfoywinfo()">保存</button>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal"  ng-click="$ctrl.opengenhuiyu()">生成报关单</button>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal"  ng-click="$ctrl.huiyusycro()">同步报关单</button>
+		<!--<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal"  ng-click="$ctrl.sysncyw()">同步业务</button>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.doGuiLei()">预归类</button>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.genFormHead()">生成报关单</button>-->
+		<!--<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.opengen()">zara生成报关单</button>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.syncallform()">zara同步报关单</button>-->
+		<div class="btn-group" uib-dropdown is-open="stat.isopen" ng-show="$ctrl.btnhide">
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                   zara操作<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width:30px">
+				 <li role="menuitem" ng-click="$ctrl.yuguilei()"><a href="">zara预归类</a></li>
+                 <li role="menuitem" ng-click="$ctrl.opengen()"><a href="">zara生成报关单</a></li>
+                 <li role="menuitem" ng-click="$ctrl.syncallform()"><a href="">zara同步报关单</a></li>
+            </ul>
+        </div>
+		<div class="btn-group" uib-dropdown is-open="stat.isopenhuiyu" >
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                   制单操作<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width:30px">
+								<!--<li role="menuitem" ng-click="$ctrl.weightdistribution()"><a href="">分配重量</a></li>-->
+					<!--<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.refreshprice()">更新价格</button>
+		<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.weightdistribution()">分配重量</button>-->
+				 <li role="menuitem" ng-click="$ctrl.refreshprice()"><a href="">更新价格</a></li>
+                 <li role="menuitem" ng-click="$ctrl.weightdistribution()"><a href="">分配重量</a></li>
+            </ul>
+        </div>
+						<div class="btn-group" uib-dropdown is-open="stat.isopenhuiyuprint" >
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                   慧与打印<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width:30px">
+							    <li role="menuitem" ng-click="$ctrl.cccproductpdf()"><a href="" >产品认证证书</a></li>
+                  <li role="menuitem" ng-click="$ctrl.print3c()"><a href="">3c目录外</a></li>
+								  <li role="menuitem" ng-click="$ctrl.print3cexplain()"><a href="">3c情况说明</a></li>
+				 <li role="menuitem" ng-click="$ctrl.printhuiyu()"><a href="">打印(箱单)</a></li>
+            </ul>
+        </div>
+		<div class="btn-group" uib-dropdown is-open="statu.isopen" ng-show="$ctrl.btnhide">
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    pdf打印&nbsp &nbsp<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width:30px">
+                 <li role="menuitem" ng-click="$ctrl.openprintinvoice()"><a href="">打印rhq( 电商 )</a></li>
+				 <li role="menuitem" ng-click="$ctrl.openprintinvoiceelect()"><a href="">打印rhq</a></li>
+                 <li role="menuitem" ng-click="$ctrl.openprintinvoicetemp()"><a href="">打印tmp( 电商 )</a></li>
+				 <li role="menuitem" ng-click="$ctrl.openprintinvoicetempelect()"><a href="">打印tmp</a></li>
+            </ul>
+      </div>
+		<div class="btn-group" uib-dropdown is-open="status.isopen">
+             <button id="single-button" type="button" class="btn  btn-sm btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    下载&nbsp &nbsp<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" style="min-width:30px">
+				<li role="menuitem" ng-click="$ctrl.donwloadfile()"><a href="">下载导入文件</a></li>
+                 <li role="menuitem" ng-click=""><a href="http://192.168.0.70:3001/api/custinfos/downloadso.xlsx?ywinfoid={{$ctrl.detailInfoData.id}}">下载SO</a></li>
+                 <li role="menuitem" ng-click=""><a href="http://192.168.0.70:3001/api/custinfos/downloadasn.xlsx?ywinfoid={{$ctrl.detailInfoData.id}}">下载ASN</a></li>
+				 <li role="menuitem" ng-click=""><a href="http://192.168.0.70:3001/api/custinfos/downloadhuowu.xlsx?ywid={{$ctrl.detailInfoData.id}}">货物清单</a></li>
+				 <li role="menuitem" ng-click="$ctrl.searchdoc()"><a href="">查验补充文档</a></li>
+				 <li role="menuitem" ng-click=""><a href="http://192.168.0.70:3001/api/custinfos/downloadform.xlsx?ywinfoid={{$ctrl.detailInfoData.id}}">下载(电商与非电商)</a></li>
+            </ul>
+      </div>
+	  <!--<button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.print3c()">3c打印</button>
+	  <button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" ng-click="$ctrl.print3cexplain()">3c打印explain</button>-->
+		<!--弹出框-->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							提示信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						{{$ctrl.text}}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+					</div>
+				</div>
+				<!-- /.modal-content --> 
+			</div>
+			<!-- /.modal -->
+		</div>
+		<div id="overlay">
+        <div id="dlgcontent" style="width:370px">
+          <table id="tokenoperate">
+            <tr>
+				<td>
+                单证类型：
+              </td>
+              <td>
+				<select ng-model="$ctrl.selieflag" style="width:200px" ng-value="$ctrl.selieflag">
+					<option ng-repeat="item in  $ctrl.ieflaglist" value="{{item.key}}">{{item.selcli}}</option>
+				</select>
+				
+				</td>
+            </tr>
+			<tr style="height:50px">
+			  <td>
+                报关单模板：
+              </td>
+              <td>
+					<ui-select ng-model="$ctrl.seltemp" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+							<ui-select-match  placeholder="请输入模板名称...">{{$select.selected.TempleteName || $select.selected}}</ui-select-match>
+							<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.TempleteName as item in $ctrl.selsource1 track by $index " style="width:256px">
+							<div ng-bind-html="item.TempleteName | highlight: $select.search"></div>
+							<!--<small ng-bind-html="item.custid.custname | highlight: $select.search"></small>-->
+							</ui-select-choices>
+					</ui-select>
+			</td>
+			</tr>
+			<tr>
+				<td>
+					条数:
+				</td>
+				<td>
+					<input type="text" style="width:200px" ng-model="$ctrl.zaralistnum">
+				</td>
+			</tr>
+          </table>
+		  
+          <div id="footer">
+						<input type='button' id="zarabtn" class="btn-primary" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.genFormHead_zara()"
+              value='确定' />
+						<input type='button' id="huiyubtn" class="btn-primary" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.genFormHead_huiyu()"
+              value='确定' />
+							<input type='button' ng-click="$ctrl.cancle()" value='取消' />
+					</div>
+        </div>
+      </div>
+
+		<!--<div>
+			<table class="table table-bordered">
+				<caption>
+				</caption>
+				<tbody>
+					<tr>
+						<th>业务数据</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>-->
+				<div id="overlayguilei">
+        <div id="dlgcontent" style="width:500px">
+          <table id="tokenoperate">
+            <tr>
+				<td>
+                单证类型：
+              </td>
+              <td>
+				<select ng-model="$ctrl.manualieflag">
+					<option ng-repeat="item in  $ctrl.ieflaglist" value="{{item.key}}">{{item.selcli}}</option>
+					</select>
+				
+				</td>
+              <td>
+                手册号：
+              </td>
+              <td>
+				  <input type="text"  ng-model='$ctrl.manualno'/>
+					<!--<ui-select ng-model="$ctrl.seltemp" class="spguilei" theme="select2" ng-disabled="false" on-select="$ctrl.beCustidSelected($item, $model)" style="width:200px">
+							<ui-select-match  placeholder="请输入模板名称...">{{$select.selected.TempleteName || $select.selected}}</ui-select-match>
+							<ui-select-choices style="width:200px" refresh="$ctrl.searchasynccustname($select.search, $model)" refresh-delay="0 " repeat=" item.TempleteName as item in $ctrl.selsource1 track by $index " style="width:256px">
+							<div ng-bind-html="item.TempleteName | highlight: $select.search"></div>
+							</ui-select-choices>
+					</ui-select>-->
+			</td>
+            </tr>
+          </table>
+		  
+          <div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.manualyuguilei()"
+              value='确定' /><input type='button' ng-click="$ctrl.cancleguilei()" value='取消' /></div>
+        </div>
+      </div>
+			
+
+
+	  <div id="overlaytemp">
+        <div id="dlgcontent" style="width:350px">
+          <table id="tokenoperate">
+            <tr>
+				<td>
+                单证类型：
+              </td>
+              <td>
+				<select ng-model="$ctrl.manualieflag">
+					<option ng-repeat="item in  $ctrl.ieflaglist" value="{{item.key}}">{{item.selcli}}</option>
+					</select>	
+				</td>
+            </tr>
+          </table>
+		  
+          <div id="footer">
+			  <input id="okbtn1" type='button' class="btn-primary" style="display:none" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.printinvoice()"value='确定' />
+			  <input id="okbtn2" type='button' class="btn-primary" style="display:none" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.printinvoiceelect()"value='确定' />
+			  <input id="okbtn3" type='button' class="btn-primary" style="display:none" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.printinvoicetemp()"value='确定' />
+			  <input id="okbtn4" type='button' class="btn-primary" style="display:none" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.printinvoicetempelect()"value='确定' />
+			  <input type='button' ng-click="$ctrl.cancletemp()" value='取消' /></div>
+        </div>
+      </div>
+	  	  <div id="overlaychayan">
+        <div id="dlgcontent" style="width:350px">
+          <table id="tokenoperate">
+            <tr>
+				<td>
+                单证类型：
+              </td>
+              <td>
+				<select ng-model="$ctrl.manualieflag">
+					<option ng-repeat="item in  $ctrl.ieflaglist" value="{{item.key}}">{{item.selcli}}</option>
+					</select>	
+				</td>
+            </tr>
+          </table>
+		  
+          <div id="footer">
+			  <a href="http://192.168.0.70:3001/api/custinfos/downloadsonotesN.xlsx?ywinfoid={{$ctrl.detailInfoData.id}}&ie_flag='{{$ctrl.manualieflag}}'"><input id="okbtn" type='button' class="btn-primary" ng-click="$ctrl.cancletemp()" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.canclesearch()"value='下载'/></a>
+			  <input type='button' ng-click="$ctrl.canclesearch()" value='关闭' /></div>
+        </div>
+      </div>
+		<br>
+		<br>
+
+		<div class="ywinfo-lab">
+			<div>
+				<lable>提运单号</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].billNo">
+				<lable>件数</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].packNo">
+				<lable>毛重</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].grossWt">
+				<lable>净重</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].netWt">
+			</div>
+			<div>
+				<lable>业务编号</lable> <input type="text" ng-model="$ctrl.detailInfoData.YWNO">
+				<lable>出口口岸</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].iEPort">
+				<lable>合同号</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].contrNo">
+				<lable>备注</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].noteS">
+
+			</div>
+			<div>
+				<lable>抵运港</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].tradeCountry">
+				<lable>目的口岸</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].distinatePort">
+				<lable>船名</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfo[0].trafName">
+				<lable>航</lable> <input type="text" ng-model="$ctrl.detailInfoData.tiyundaninfoinfo[0].voyageNo">
+			</div>
+			<div>
+				<lable>客户业务编号</lable> <input type="text" ng-model="$ctrl.detailInfoData.CustYWNO">
+				<lable>计费重量</lable> <input type="text" ng-model="$ctrl.detailInfoData.feeweight">
+				<lable>创建人</lable> <input type="text" ng-model="$ctrl.detailInfoData.createperson">
+			</div>
+		</div>
+		<br>
+		<div>
+			<uib-tabset active="activeJustified" justified="true">
+				<uib-tab index="0" heading="发票">
+					<div id="ywinfogrid" ui-grid="$ctrl.gridOptions3" class="grid" ui-grid-pagination ui-grid-resize-columns ui-grid-auto-resize
+					 style="height:355px"></div>
+				</uib-tab>
+				<!--<uib-tab index="1" heading="提运单">
+					<div id="grid2" ui-grid="{ data: $ctrl.detailInfoData.tiyundaninfo }" class="grid" ui-grid-auto-resize></div>
+				</uib-tab>-->
+				<uib-tab index="2" heading="报关单">
+					<div id="grid3" ui-grid="$ctrl.gridOptions1" class="grid" style="width:100%" ui-grid-resize-columns ui-grid-auto-resize></div>
+				</uib-tab>
+			</uib-tabset>
+		</div>
+	</div>

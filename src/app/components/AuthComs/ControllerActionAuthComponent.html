@@ -1,0 +1,16 @@
+<div class="component">
+     <div class="public-button" style="height:33px">
+      <div style="float:right">
+      <input class="btn btn-primary btn-sm" type="submit" id="submit" value="搜索"  ng-click="$ctrl.findAll(keyword)" />
+       <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.login()">停用 </button>
+      <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.update()">修改 </button>
+      </div>
+    <div style="float:right;">
+       <input type="text" class="form-control input-search" ng-model="keyword" my-enter="$ctrl.findAll(keyword)" placeholder="搜索"
+				aria-describedby="basic-addon2">
+		</div>
+    </div>
+
+
+    <div id="grid1" style="height:520px" ui-grid="$ctrl.gridOptions" ui-grid-selection ui-grid-resize-columns ui-grid-pinning ui-grid-pagination class="grid"></div>
+  </div>

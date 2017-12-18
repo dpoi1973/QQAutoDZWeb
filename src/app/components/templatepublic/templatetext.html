@@ -1,0 +1,19 @@
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.close()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示信息
+				</h4>
+			</div>
+			<div class="modal-body" id="modalbody">
+				{{$ctrl.text}}
+			</div>  
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="$ctrl.okbutton()" id="okbtn" ng-show="$ctrl.hiddenbtn">
+					确定
+				</button>
+				<button type="button" class="btn btn-default" ng-click="$ctrl.close()">关闭
+				</button>
+			</div>

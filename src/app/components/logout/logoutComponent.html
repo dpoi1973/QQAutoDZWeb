@@ -1,0 +1,9 @@
+<div class="modal-header">
+    <h3 class="modal-title" style="text-align:center;color:red">{{$ctrl.text}}</h3>
+</div>
+<form ng-submit="$ctrl.exit()">
+   <div class="modal-body" style="margin-left:230px;">
+        <input class="btn btn-primary" type="submit" id="submit" value="退出" />
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.close()">取消</button>
+   </div>
+</form>

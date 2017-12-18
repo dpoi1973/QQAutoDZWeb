@@ -1,0 +1,68 @@
+<div class="component">
+	<!--写入代码-->
+	<div>
+		<div class="public-button">
+			<div style="float:right">
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.findAll(modelkey)">查询</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.delete()">删除</button>
+			<!--<button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.addnew()">添加</button>-->
+            <button id="modelid" class="btn btn-default btn-sm" type="button" ng-click="$ctrl.openuploadzip()">免3c上传</button>
+			<button id="modelid" class="btn btn-default btn-sm" type="button" ng-click="$ctrl.uploadccc()">上传3cPdf</button>
+		   </div>
+		    <div style="float: right;" >
+			<input type="text" style="width: 300px" class="form-control input-search" my-enter="$ctrl.findAll(modelkey)" ng-model="modelkey" placeholder="查询"
+				aria-describedby="basic-addon2">
+		</div>
+		</div>
+            	<div id="overlayzip">
+				<ul id="tokenoperatezip">
+					<li>
+						<input type="file" file-model="myFile" id="myFilezip">
+					</li>
+					<div id="footer"><input type='button' class="btn-primary" data-toggle="modal" class="" ng-click="$ctrl.save()" data-target="#myModal" value='确定' /><input type='button' ng-click="$ctrl.canclezip()" value='取消'/></div>
+				</ul>
+			</div>
+		</div>
+		</div>
+
+					<div id="overlayccc">
+        <div id="dlgcontent" style="width:370px">
+          <table id="tokenoperate">
+            <tr>
+				      <td>
+                sku：
+              </td>
+              <td>
+           <input type="text" style="width:200px" ng-model="$ctrl.sku">	
+				</td>
+            </tr>
+			<tr>
+				<td>
+					国家:
+				</td>
+				<td>
+					<input type="text" style="width:200px" ng-model="$ctrl.country">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					文件:
+				</td>
+				<td>
+					<input type="file" id="mypdffile" ng-model="$ctrl.mypdffile">
+				</td>
+			</tr>
+          </table>
+		  
+          <div id="footer">
+						<input type='button' id="productccc" class="btn-primary" data-toggle="modal" class="" data-target="#myModal" ng-click="$ctrl.Productcertification()"
+              value='确定' />
+							<input type='button' ng-click="$ctrl.uploadccc()" value='取消' />
+					</div>
+        </div>
+      </div>
+		<br>
+		<br>
+		<div ui-grid="$ctrl.gridOptions" ui-grid-pinning ui-grid-resize-columns ui-grid-pinning ui-grid-edit ui-grid-pagination ui-grid-selection ui-grid-exporter ui-grid-auto-resize class="grid" style="height:550px"></div>
+	</div>
+</div>
